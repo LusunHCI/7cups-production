@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
       contentType: "application/json",
       success: function(json) {
         var scores=json['scores'];
-        var actionRanking='<div class="actionOption" id="actionOption'+msgid+'"> <div class="input-field col s12" style="float:left;width:100%;"> <select name="actionselect'+msgid+'" style="overflow:scroll;"> <option value=""> '+ botmessage +'</option>';
+        var actionRanking='<div class="actionOption" id="actionOption'+msgid+'"> <div class="input-field col s12" style="float:left;width:100%;"> <select name="actionselect'+msgid+'" style="overflow:scroll;">';
         for(i=0;i<scores.length;i++) {
           if(scores[i]['action'].substr(0,5)=='utter') {
             actionRanking+="<option value='"+responseDict[scores[i]['action']]+"'>"+responseDict[scores[i]['action']]+"</option>";
