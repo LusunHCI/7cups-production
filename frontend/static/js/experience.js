@@ -87,18 +87,18 @@ currentShow=0;
 function action_trigger() {
 
 // send an event to the bot, so that bot can start the conversation by greeting the user
-$.ajax({
-  url: `http://localhost:5005/conversations/${para}/execute`,
-  type: "POST",
-  contentType: "application/json",
-  data: JSON.stringify({ "name": action_name, "policy": "MappingPolicy", "confidence": "0.98" }),
-  success: function(botResponse, status) {
+  $.ajax({
+    url: `http://127.0.0.1/rasa/conversations/${para}/execute`,
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify({ "name": action_name, "policy": "MappingPolicy", "confidence": "0.98" }),
+    success: function(botResponse, status) {
 
-   if (botResponse.hasOwnProperty("messages")) {
-    setBotResponse(botResponse.messages);
-  }
-  $("#userInput").prop('disabled', false);
-},
+    if (botResponse.hasOwnProperty("messages")) {
+      setBotResponse(botResponse.messages);
+    }
+    $("#userInput").prop('disabled', false);
+  },
 error: function(xhr, textStatus, errorThrown) {
 
     // if there is no response from rasa server
@@ -192,12 +192,13 @@ function scrollToBottomOfResults() {
 //============== send the user message to rasa server =============================================
 function send(message) {
 
-  var url = window.location.href;
+  // var url = window.location.href;
+  var url = document.location.protocol + "//" + document.location.hostname;
   var arrUrl = url.split("%3F");
   var para = arrUrl[1];
 
   $.ajax({
-   url: "http://localhost:5005/webhooks/rest/webhook",
+   url: url + "/rasa/webhooks/rest/webhook",
    type: "POST",
    contentType: "application/json",
    data: JSON.stringify({ message: message, sender: para }),
@@ -243,7 +244,7 @@ function send(message) {
  });
   var intent="";
   $.ajax({
-   url:"http://localhost:5005/model/parse",
+   url: url+"/model/parse",
    type:"POST",
    contentType: "application/json",
    data: JSON.stringify({ text: message}),
@@ -313,8 +314,9 @@ function appendActions(botmessage,msg_type,msgid) {
    $(yesGuide).appendTo(divid);
    var noGuide="<div class='noGuide' id='noGuide"+msgid+"'><p style='float:left; width: 100%;'>Please select one from below which can better reply to your message. </p> </div>";
    $(noGuide).appendTo(divid);
+   
    $.ajax({
-    url:"http://localhost:5005/conversations/"+para+"/predict",
+    url:"http://127.0.0.1:5005/conversations/"+para+"/predict",
     type:"POST",
     contentType: "application/json",
     success: function(json) {
