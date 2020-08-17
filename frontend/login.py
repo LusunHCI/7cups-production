@@ -124,16 +124,12 @@ def submitCodesign():
 	return render_template('experience.html')
 
 if __name__ == '__main__':
-<<<<<<< HEAD
 	app.run(debug=True, host='0.0.0.0')
-=======
- app.run(debug=True, host='0.0.0.0')
 
 
 
 
 
 
->>>>>>> 99736cb636dd475c470e5183ea33e798cc30b508
 
 
