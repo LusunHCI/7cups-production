@@ -15,7 +15,7 @@ def index():
 def experience(userid):
     return render_template('experience.html')
 
-@app.route('/userMessage/', methods=['POST','GET'])
+@app.route('/userMessage', methods=['POST','GET'])
 def userMessage():
 	if request.method =='GET':
 		print("get")
@@ -42,7 +42,7 @@ def userMessage():
 		mydb.close()
 	return render_template('experience.html')
 
-@app.route('/botResponse/', methods=['POST','GET'])
+@app.route('/botResponse', methods=['POST','GET'])
 def botResponse():
 	if request.method =='GET':
 		print("get")
@@ -74,7 +74,7 @@ def botResponse():
 		mycursor.close()
 		mydb.close()
 	return render_template('experience.html')
-@app.route('/submitCodesign/', methods=['POST','GET'])
+@app.route('/submitCodesign', methods=['POST','GET'])
 def submitCodesign():
 	if request.method =='GET':
 		print("get")
@@ -123,10 +123,7 @@ def submitCodesign():
 		mydb.close()
 	return render_template('experience.html')
 
-
-
-
-
-
+if __name__ == '__main__':
+	app.run(debug=True, host='0.0.0.0')
 
 
