@@ -79,7 +79,7 @@ def submitCodesign():
 	if request.method =='GET':
 		print("get")
 	if request.method =='POST':
-		mmydb = mysql.connector.connect(
+		mydb = mysql.connector.connect(
     	host="db",
   		port=3306,
     	user="root",
@@ -125,10 +125,6 @@ def submitCodesign():
 
 if __name__ == '__main__':
 	app.run(debug=True, host='0.0.0.0')
-
-
-
-
 
 
 
