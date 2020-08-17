@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $(tempdiv).appendTo(".feedback");
     divid='#'+divid;
     $(divid).hide();
-    var listenerMessage='<h6>Your message</h6> <div class="lmsg"> <p class="listenerMsg">' + message + '</p> </div> <div class="selectIntents"> <p> The model detected the intention of this message as "' +intent['name'].replace('_',' ')+ '" with the confidence as ' +Number(intent['confidence']).toFixed(2)+ '/1.0. </p></div>';
+    var listenerMessage='<h6>Your message</h6> <div class="lmsg"> <p class="listenerMsg">' + message + '</p> </div> <div class="selectIntents"> <p> The chatbot interpreted the intent of your message as "' +intent['name'].replace('_',' ')+ '" with the confidence as ' +Number(intent['confidence']).toFixed(2)+ '/1.00. </p></div>';
     $(listenerMessage).appendTo(divid);
     var intentCard='<div class="intentCard"><div class="card"><div class="card-content">'+ intentsDict[intent['name']].replace('_',' ') +'</div> </div> </div>';
     $(intentCard).appendTo(divid);
@@ -338,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
         actionRanking+="</select> </div> </div>";
         $(actionRanking).appendTo(divid);
         $('select').formSelect();
-        var otherResponse="<div class='otherResponse' id='otherResponse"+msgid+"'><p>What other ways could the chatbot respond to your message?</p> <textarea class='materialize-textarea' name='other"+msgid+"' id='other"+msgid+"' style='float:left;width:100%;'></textarea>  </div>";
+        var otherResponse="<div class='otherResponse' id='otherResponse"+msgid+"'><p>What other responses could the chatbot provide to your message?</p> <textarea class='materialize-textarea' name='other"+msgid+"' id='other"+msgid+"' style='float:left;width:100%;'></textarea>  </div>";
         $(otherResponse).appendTo(divid);
       }
     });
@@ -538,7 +538,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   $("#endConversation").click(function() {
     $('.experience_instruction').remove();
-    var codesign_instruction="<p>In this section of the codesign, we will replay your conversation with the chatbot, during this process, please help us correct the chatbot by answering the corresponding questions regarding Intents, Responses, and Feedback. <br/>  <br/> Intents refer to the goal or intention of any message you send to the chatbot. Responses are given by the chatbot based on the intent. Below is an example of a corresponding intent and response with the confidence score indicating the level of correlation between the intent and the response. <br/>  <br/> <table> <tbody> <tr> <td> Listener: “Hi!” </td> <td> Intent: greeting (confidence score = 0.98) </td> </tr> <tr> <td> Chatbot: “Hello”</td> <td>Response: Hello  </td> </tr> </tbody> </table> <br/>  <br/> The chatbot understood the listener’s intent of greeting saying “Hi” and responded with “Hello”. <br/> <br/> <table> As you look over the Intents and Responses please edit or provide feedback regarding the content of the chatbot’s responses to your messages. When you are done, click “End the conversation”.</p>";
+    var codesign_instruction="<p>In this section of the codesign, we will replay your conversation with the chatbot, during this process, please help us correct the chatbot by answering the corresponding questions regarding Intents of your message and Responses of the chatbot.  <br/>  <br/> Intents refer to the goal or intention of any message you send to the chatbot. Responses are given by the chatbot based on the intent. Below is an example of a corresponding intent and response with the confidence score indicating the level of correlation between the intent and the response. <br/>  <br/> <table> <tbody> <tr> <td> Listener: “Hi!” </td> <td> Intent: greeting (confidence score = 0.98) </td> </tr> <tr> <td> Chatbot: “Hello”</td> <td>Response: Hello  </td> </tr> </tbody> </table> <br/>  <br/> The chatbot understood the listener’s intent of greeting saying “Hi” with the confidence as 0.98 out of 1.0 and responded with “Hello”. <br/> <br/> <table> As you look over the Intents and Responses, please answer the corresponding questions and edit the content of the chatbot’s responses to your messages. Please press “Start” to begin.</p>";
     $(codesign_instruction).appendTo(".instruction");
     $(".startButton").toggle();
     $('#userInput').attr('disabled',true);

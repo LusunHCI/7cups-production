@@ -1,8 +1,14 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Raleway', sans-serif;
     background-size: cover;
-    display: table-cell;
-    vertical-align: middle;
+    display: table;
 }
 html {
     display: table;
