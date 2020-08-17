@@ -21,11 +21,12 @@ def userMessage():
 		print("get")
 	if request.method =='POST':
 		mydb = mysql.connector.connect(
-  		host="localhost",
-  		user="root",
-  		password="Lyh19970515@",
-  		database="7cups_summer"
-		)
+    	host="db",
+  		port=3306,
+    	user="root",
+    	password="lusun",
+    	database="7cups"
+  		)
 		mycursor = mydb.cursor()
 		message_id=request.json['message_id']
 		chatroom_id=int(request.json['chatroom_id'])
@@ -47,11 +48,12 @@ def botResponse():
 		print("get")
 	if request.method =='POST':
 		mydb = mysql.connector.connect(
-  		host="localhost",
-  		user="root",
-  		password="Lyh19970515@",
-  		database="7cups_summer"
-		)
+    	host="db",
+  		port=3306,
+    	user="root",
+    	password="lusun",
+    	database="7cups"
+  		)
 		mycursor = mydb.cursor()
 		message_id=request.json['message_id']
 		chatroom_id=int(request.json['chatroom_id'])
@@ -77,12 +79,13 @@ def submitCodesign():
 	if request.method =='GET':
 		print("get")
 	if request.method =='POST':
-		mydb = mysql.connector.connect(
-  		host="localhost",
-  		user="root",
-  		password="Lyh19970515@",
-  		database="7cups_summer"
-		)
+		mmydb = mysql.connector.connect(
+    	host="db",
+  		port=3306,
+    	user="root",
+    	password="lusun",
+    	database="7cups"
+  		)
 		mycursor = mydb.cursor()
 		form_json = json.loads(request.data)
 		userid=form_json['userid']
