@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <title>Chatbot</title>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500&display=swap" rel="stylesheet">
+
+    <!--Import Font Awesome Icon Font-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+
+    <!--Import materialize.css-->
+    <link rel="stylesheet" type="text/css" href="../static/css/materialize.min.css">
+
+    <!--Main css-->
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+
+    <nav style="width:1900px; background-color: #5a17ee;">
+        <div class="nav-wrapper">
+            <!--       <a href="#hints" class="brand-logo right"></a> -->
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="#"> Experience the Chatbot</a>
+                    <li class="active" ><a href="#">Co-design Activites</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!--     <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
+
+        <div class="container" id="container">
+        <!-- Modal for rendering the charts, declare this if you want to render charts, 
+         else you remove the modal -->
+         <div class="intentsDictionary">
+             <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="background-color:white; border-radius:30px; border: 2px solid #5a17ee; color: #5a17ee; position: fixed; right: 15px; top: 15px">Intents Dictionary</a>
+         </div>
+
+
+
+
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Dictionary</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Intents</th>
+                            <th> Utterance Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>greeting</td>
+                            <td>Good morning! Welcome to 7cups!</td>
+                        </tr>
+                        <tr>
+                            <td>age_inquiry</td>
+                            <td>How old are you?</td>
+                        </tr>
+                        <tr>
+                            <td>stressor_inquiry</td>
+                            <td>Would you like to share your problems?</td>
+                        </tr>
+                        <tr>
+                            <td>stressor_inquiry_time</td>
+                            <td>How long has it been?</td>
+                        </tr>
+                        <tr>
+                            <td>stressor_inquiry_when</td>
+                            <td>When did this happen?</td>
+                        </tr>
+                        <tr>
+                            <td>stressor_inquiry_feelings</td>
+                            <td>How did you feel about that?</td>
+                        </tr>
+                        <tr>
+                            <td>stressor_inquiry_further_details</td>
+                            <td>Can you tell me more about the situation?</td>
+                        </tr>
+                        <tr>
+                            <td>stressor_inquiry_why</td>
+                            <td>Do you know why you might feel this way?</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+        </div>
+
+        <!--chatbot widget -->
+        <div class="widget">
+            <div class="chat_header">
+
+                <!--Add the name of the bot here -->
+                <span class="chat_header_title">breakup</span>
+<!--                 <span class="dropdown-trigger" href='#' data-target='dropdown1'>
+                  <i class="material-icons">
+                      more_vert
+                  </i>
+              </span> -->
+
+              <!-- Dropdown menu-->
+<!--               <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#" id="clear">Clear</a></li>
+                <li><a href="#" id="restart">Restart</a></li>
+                <li><a href="#" id="close">Close</a></li>
+            </ul> -->
+        </div>
+
+        <!--Chatbot contents goes here -->
+        <div class="chats" id="chats">
+            <div class="clearfix"></div>
+        </div>
+
+        <!--keypad for user to type the message -->
+        <div class="keypad">
+            <textarea id="userInput" placeholder="Type a message..." class="usrInput"></textarea>
+            <div id="sendButton"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>
+        </div>
+    </div>
+
+    <!--bot profile-->
+    <div class="profile_div" id="profile_div">
+        <!-- <img class="imgProfile" src="../static/img/botAvatar.png" /> -->
+        <i class="large material-icons themeColor">android</i>
+    </div>
+
+
+</div>
+
+
+<!--JavaScript at end of body for optimized loading-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/materialize.min.js"></script>
+
+<!--Main Script -->
+<script type="text/javascript" src="../static/js/feedback.js"></script>
+
+<!--Chart.js Script -->
+<script type="text/javascript" src="../static/js/chart.min.js"></script>
+
+</body>
+
+</html>
