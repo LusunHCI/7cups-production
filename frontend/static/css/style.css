@@ -18,7 +18,6 @@ html {
 /* ============= css related to chats =============== */
 
 .widget {
-    display: none;
     width: 350px;
     left: 15px;
     height: 580px;
@@ -30,7 +29,6 @@ html {
 }
 
 .endButton{
-    display: none;
     left: 15px;
     position: fixed;
     bottom: 5px;

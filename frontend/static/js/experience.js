@@ -320,8 +320,8 @@ document.addEventListener('DOMContentLoaded', function() {
       contentType: "application/json",
       success: function(json) {
         var scores=json['scores'];
-        var actionRanking='<div class="actionOption" id="actionOption'+msgid+'"> <div class="input-field col s12" style="float:left;width:100%;"> <select name="actionselect'+msgid+'" style="overflow:scroll;">';
-        for(i=0;i<scores.length;i++) {
+        var actionRanking='<div class="actionOption" id="actionOption'+msgid+'"> <div class="input-field col s12" style="float:left;width:100%;"> <select name="actionselect'+msgid+'" style="overflow:scroll;"> <option value=""> '+ botmessage +'</option>';
+        for(i=0;i<10;i++) {
           if(scores[i]['action'].substr(0,5)=='utter') {
             actionRanking+="<option value='"+responseDict[scores[i]['action']]+"'>"+responseDict[scores[i]['action']]+"</option>";
           }
@@ -338,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
         actionRanking+="</select> </div> </div>";
         $(actionRanking).appendTo(divid);
         $('select').formSelect();
-        var otherResponse="<div class='otherResponse' id='otherResponse"+msgid+"'><p>What other responses could the chatbot provide to your message?</p> <textarea class='materialize-textarea' name='other"+msgid+"' id='other"+msgid+"' style='float:left;width:100%;'></textarea>  </div>";
+        var otherResponse="<div class='otherResponse' id='otherResponse"+msgid+"'><p>How else could the chatbot reply to your message?</p> <textarea class='materialize-textarea' name='other"+msgid+"' id='other"+msgid+"' style='float:left;width:100%;'></textarea>  </div>";
         $(otherResponse).appendTo(divid);
       }
     });
@@ -614,11 +614,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   //====================================== Toggle chatbot =======================================
-  $("#profile_div").click(function() {
-    $(".profile_div").toggle();
-    $(".widget").toggle();
-    $(".endButton").toggle();
-  });
+  // $("#profile_div").click(function() {
+  //   $(".profile_div").toggle();
+  //   $(".widget").toggle();
+  //   $(".endButton").toggle();
+  // });
   
   //====================================== functions for drop-down menu of the bot  =========================================
   function createCardsCarousel(cardsData) {
