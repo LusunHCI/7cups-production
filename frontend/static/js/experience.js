@@ -176,7 +176,14 @@ if(message_count==1) {
     $('#endConversation').removeClass('disabled');
   },180000);
   setTimeout(function() {
+    var end=document.getElementById("endConversation").className.indexOf('disabled');
+    if(end==-1)  {
+      console.log(end);
     M.toast({html: "It's time to end the conversation. Say goodbye to Andrew! "})
+  }
+  else {
+    console.log('ok'+end);
+  }
   },600000);
 }
 }
@@ -194,7 +201,7 @@ function scrollToBottomOfResults() {
 function send(message) {
   
   var rasaUrl = document.location.protocol + "//" + document.location.hostname + "/rasa";
-  
+  //var rasaUrl="http://localhost:5005"
   $.ajax({
    url: rasaUrl + "/webhooks/rest/webhook",
    type: "POST",
@@ -263,7 +270,7 @@ function appendIntents(intent, message,ranking,msgid) {
   $(tempdiv).appendTo(".feedback");
   divid='#'+divid;
   $(divid).hide();
-  var listenerMessage='<h6>Your message</h6> <div class="lmsg"> <p class="listenerMsg">' + message + '</p> </div> <div class="selectIntents"> <p> The chatbot interpreted the intent of your message as "' +intent['name'].replace('_',' ')+ '" with the confidence as ' +Number(intent['confidence']).toFixed(2)+ '/1.00. </p></div>';
+  var listenerMessage='<h6>Your message</h6> <div class="lmsg"> <p class="listenerMsg">' + message + '</p> </div> <div class="selectIntents"> <p> The chatbot interpreted the intent of your message as "' +intent['name'].toString().replace('_','')+ '" with the confidence as ' +Number(intent['confidence']).toFixed(2)+ '/1.00. </p></div>';
   $(listenerMessage).appendTo(divid);
   var intentCard='<div class="intentCard"><div class="card"><div class="card-content">'+ intentsDict[intent['name']].replace('_',' ') +'</div> </div> </div>';
   $(intentCard).appendTo(divid);
@@ -271,9 +278,9 @@ function appendIntents(intent, message,ranking,msgid) {
   $(isCorrect).appendTo(divid);
   var choiceButton='<div class="choiceButton"> <input type="text" class="hiddenInput" name="yesno'+message_count.toString()+'" id="yesno'+message_count.toString()+'" style="height:1px;display:none;"> <br/> <button class="yesintent btn" id="yesIntent'+message_count.toString()+'" onclick="yesintent('+message_count.toString()+')" type="button" style="background-color:white;border-radius:30px; border: 2px solid #5a17ee; color: #5a17ee"> Yes </button>  <button class="nointent btn" id="noIntent'+message_count.toString()+'" onclick="nointent('+message_count.toString()+')" type="button" style="background-color:white;border-radius:30px; border: 2px solid #5a17ee; color: #5a17ee"> No </button> </div>';
   $(choiceButton).appendTo(divid);
-  var selectDesc="<div class='yesDesc' id='yesDesc"+message_count.toString()+"'> <p style='float:left; width: 100%;'>If you think this is your intent, press the Next button. </p> </div> <div class='noDesc' id='noDesc"+message_count.toString()+"'> <p style='float:left; width: 100%;'> Please select one intent from below. If none of the following captured your intention, select \"Add More\" and click \"Add New Intent\" button</p> </div>";
+  var selectDesc="<div class='yesDesc' id='yesDesc"+message_count.toString()+"'> <p style='float:left; width: 100%;'>To confirm, press the Next button. </p> </div> <div class='noDesc' id='noDesc"+message_count.toString()+"'> <p style='float:left; width: 100%;'> Please select one intent from below. If none of the following captured your intention, select \"NONE OF THIS APPLIES\" and give your new intent a name and a brief description like what is shown in the card</p> </div>";
   $(selectDesc).appendTo(divid);
-  var intentRanking="<div class='intentOption' id='intentOption"+message_count.toString()+"'> <div class='input-field col s12' style='float:left;width:100%;'> <select name='intentselect"+message_count.toString()+"'>";
+  var intentRanking="<div class='intentOption' id='intentOption"+message_count.toString()+"'> <div class='input-field col s12' style='float:left;width:100%;'> <select name='intentselect"+message_count.toString()+"' id='intentsselect"+message_count.toString()+"' onchange='addOneNewIntent("+message_count.toString()+")'>";
   for(i=0;i<ranking.length;i++) {
    if(Number(ranking[i]['confidence']).toFixed(2)>=0.01) {
     if(ranking[i]['name']=='give_advice' || ranking[i]['name']=='self_harm') {
@@ -284,18 +291,22 @@ function appendIntents(intent, message,ranking,msgid) {
     }
   }
 }
-intentRanking+="<option value='Add_More'>ADD MORE</option></select> </div>";
-intentRanking+='<i class="material-icons" onclick="addNewIntents('+message_count.toString()+')">add</i> Add New Intent</div>';
+intentRanking+="<option value='Add_More'>NONE OF THIS APPLIES</option></select> </div> </div>";
+// intentRanking+='<i class="material-icons" onclick="addNewIntents('+message_count.toString()+')">add</i> Add New Intent</div>';
 $(intentRanking).appendTo(divid);
-var otherIntent="<div class='otherIntent' id='otherIntent"+message_count.toString()+"'><div class='card'><div class='input-field col s6' style='width:50%;position:relative;left:10px;'> <input name='newIntent"+message_count.toString()+"' id='newIntent"+message_count.toString()+"' type='text'><label for='newIntent"+message_count.toString()+"'>New Intent Name</label></div> <div class='input-field col s12'><textarea class='materialize-textarea' name='newExplaination"+message_count.toString()+"' id='newExplaination"+message_count.toString()+"' style='width:90%;position:relative;left:10px;'></textarea> <label for='newExplaination"+message_count.toString()+"'>New Intent Explaination</label></div> </div> </div>";
+var otherIntent="<div class='otherIntent' id='otherIntent"+message_count.toString()+"'><div class='card'><div class='input-field col s6' style='width:50%;position:relative;left:10px;'> <input placeholder='greeting' name='newIntent"+message_count.toString()+"' id='newIntent"+message_count.toString()+"' type='text'><label for='newIntent"+message_count.toString()+"' class='active' style='left:0;'>New Intent Name</label></div> <div class='input-field col s12'><textarea placeholder='The listener is saying hi to start the conversation.' class='materialize-textarea' name='newExplaination"+message_count.toString()+"' id='newExplaination"+message_count.toString()+"' style='width:90%;position:relative;left:10px;'></textarea> <label for='newExplaination"+message_count.toString()+"' class='active'>Please describe your new intent</label></div> </div> </div>";
 $(otherIntent).appendTo(divid);
 }
 //====================================== add new intents ===========================================
-function addNewIntents(msgid) {
-  $('#otherIntent'+msgid).show();
-  var terminalResultsDivC = document.getElementById("feedback");
-  terminalResultsDivC.scrollTop = terminalResultsDivC.scrollHeight;
+function addOneNewIntent(msgid) {
+  var valueSelect=$("#intentsselect"+msgid+" option:selected").val(); 
+  if(valueSelect=='Add_More') {
+      $('#otherIntent'+msgid).show();
+      var terminalResultsDivC = document.getElementById("feedback");
+      terminalResultsDivC.scrollTop = terminalResultsDivC.scrollHeight;
+  }
 }
+
 //====================================== append Actions to the interface ===========================
 function appendActions(botmessage,msg_type,msgid) {
   if(msg_type==0) {
@@ -310,18 +321,18 @@ function appendActions(botmessage,msg_type,msgid) {
    $(isResonable).appendTo(divid);
    var yesGuide="<div class='yesGuide' id='yesGuide"+msgid+"'><p style='float:left; width: 100%;'>If you think this response is reasonable, press the Next button. </p> </div>";
    $(yesGuide).appendTo(divid);
-   var noGuide="<div class='noGuide' id='noGuide"+msgid+"'><p style='float:left; width: 100%;'>Please select one from below which can better reply to your message. </p> </div>";
+   var noGuide="<div class='noGuide' id='noGuide"+msgid+"'><p style='float:left; width: 100%;'>Please select a more reasonable reply from below. </p> </div>";
    $(noGuide).appendTo(divid);
    
    var rasaUrl = document.location.protocol + "//" + document.location.hostname + "/rasa";
-   
+   //var rasaUrl="http://localhost:5005"
    $.ajax({
     url: rasaUrl+"/conversations/"+para+"/predict",
     type:"POST",
     contentType: "application/json",
     success: function(json) {
       var scores=json['scores'];
-      var actionRanking='<div class="actionOption" id="actionOption'+msgid+'"> <div class="input-field col s12" style="float:left;width:100%;"> <select name="actionselect'+msgid+'" style="overflow:scroll;"> <option value=""> '+ botmessage +'</option>';
+      var actionRanking='<div class="actionOption" id="actionOption'+msgid+'"> <div class="input-field col s12" style="float:left;width:100%;"> <select name="actionselect'+msgid+'" style="overflow:scroll;"> ';
       for(i=0;i<10;i++) {
         if(scores[i]['action'].substr(0,5)=='utter') {
           actionRanking+="<option value='"+responseDict[scores[i]['action']]+"'>"+responseDict[scores[i]['action']]+"</option>";
@@ -539,18 +550,23 @@ $(document).on("click", ".menu .menuChips", function() {
 
 $("#endConversation").click(function() {
   $('.experience_instruction').remove();
-  var codesign_instruction="<p>In this section of the codesign, we will replay your conversation with the chatbot, during this process, please help us correct the chatbot by answering the corresponding questions regarding Intents of your message and Responses of the chatbot.  <br/>  <br/> Intents refer to the goal or intention of any message you send to the chatbot. Responses are given by the chatbot based on the intent. Below is an example of a corresponding intent and response with the confidence score indicating the level of correlation between the intent and the response. <br/>  <br/> <table> <tbody> <tr> <td> Listener: “Hi!” </td> <td> Intent: greeting (confidence score = 0.98) </td> </tr> <tr> <td> Chatbot: “Hello”</td> <td>Response: Hello  </td> </tr> </tbody> </table> <br/>  <br/> The chatbot understood the listener’s intent of greeting saying “Hi” with the confidence as 0.98 out of 1.0 and responded with “Hello”. <br/> <br/> <table> As you look over the Intents and Responses, please answer the corresponding questions and edit the content of the chatbot’s responses to your messages. Please press “Start” to begin.</p>";
+  var codesign_instruction="<p>  In this section of the codesign, we will replay your conversation with the chatbot, during this process, please help us correct the chatbot by answering the corresponding questions regarding Intents and Responses. <br/>"
+  codesign_instruction+=" <br/><u><b>Intents</b></u> refer to the goal or intention of any message you send to the chatbot. When you send a message to the chatbot, it will try and detect the correct meaning, or intent, of the message with a certain <u><b>confidence</b></u> as indicated by the confidence score out of 1.00. The example below illustrates how the chatbot detects that a listener is trying to greet them. <br/>"
+  codesign_instruction+=" <br/><table> <tbody> <tr> <td> Listener: “Hi!” </td> <td> Intent: greeting (confidence score = 0.98) </td> </tr></tbody> </table>"
+  codesign_instruction+=" <br/><u><b>Responses</b></u> are given by the chatbot based on the intent. For example, if the intent is detected to be greeting, then a reasonable response from the chatbot would be “Hello”. <br/> "
+  codesign_instruction+=" <br/><table> <tbody> <tr> <td> Listener: greeting </td> <td> Chatbot Response: \"Hello\" </td> </tr></tbody> </table>"  
+  codesign_instruction+="  <br/>The chatbot isn’t perfect so if it fails to capture your Intent, it will likely provide an inadequate Response to your message. In this section, we will replay your conversations message by message and your task will be to improve the chatbot by choosing the most accurate Intents and reasonable Responses. Please press “Start” to begin.<br/>";
   $(codesign_instruction).appendTo(".instruction");
   $(".startButton").toggle();
   $('#userInput').attr('disabled',true);
-  $('#endConversation').attr('disabled',true);
+  $('#endConversation').addClass('disabled');
   $('#sendButton').attr('disabled',true);
+  $('.intentsDictionary').show();
 });
 
 //====================================== Start co-design activity =========================================
 
 $("#startCodesign").click(function() {
-  $('.intentsDictionary').show();
   $('#feedbackForm').show();
   currentShow++;
   $('#instruction').hide();
