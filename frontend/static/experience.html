@@ -35,8 +35,9 @@
 
 
     <div class="intentsDictionary">
-     <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="background-color:white; border-radius:30px; border: 2px solid #5a17ee; color: #5a17ee; position: fixed; right: 15px; top: 15px">Intents Dictionary</a>
- </div>
+     <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="background-color:white; border-radius:30px; border: 2px solid #5a17ee; color: #5a17ee; position: fixed; right: 15px; top: 15px">Intents Dictionary
+     </a>
+    </div>
 
  <div id="modal1" class="modal">
     <div class="modal-content">
@@ -125,7 +126,7 @@
         </table>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        <a class="modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
 </div>
 
@@ -136,7 +137,7 @@
     <div class="instruction" id="instruction" style="overflow:scroll-y; height: 83%; width:65%; position: fixed; left: 400px; bottom: 50px;">
         <h4>Instructions</h4>
         <p class="experience_instruction">
-            Please try to communicate with the chatbot on the left. The chatbot will simulate a 7 cups member struggling with their breakup that you, as a listener, can help and further develop your skills as a listener. You can interact with the chatbot for a minimum of 3 minutes and a maximum of 10 minutes. When you are done interacting with the chatbot, click “End the conversation” to move on to the next section of co-design. In the next co-design stage, you will go through these messages and answer several questions to help us improve this chatbot. 
+            Please try to communicate with the chatbot on the left. The chatbot will simulate a 7 cups member struggling with their breakup that you, as a listener, can help and further develop your skills as a listener. The chatbot is not perfect so if you encounter a misstep in your conversation with the chatbot, just try to continue the conversation in a new direction. In the co-design activities that follow your interaction with the chatbot, you will have an opportunity to correct these missteps. Try to interact with the chatbot for 10 minutes. When you are done interacting with the chatbot, click “End the conversation” to move on to the next section of co-design. In the next co-design stage, you will go through these messages and answer several questions to help us improve this chatbot.
         </p>
         <div class="startButton">
             <div id='startCodesign' class='btn waves-effect waves-light' style='background-color:#5a17ee; position: fixed; right: 15px; bottom: 5px; width: 10%; border-radius:30px;'>Start</div>
@@ -151,11 +152,23 @@
 
     <form id="feedbackForm">
         <div class="feedback" id="feedback" style="overflow:scroll; height: 83%; width:65%; position: fixed; left: 400px; bottom: 50px;">
+            <a class="modal-trigger" href="#modal2" style="position:fixed;right:15px"><i class="material-icons" style="color: #5a17ee; font-size: 35px">error_outline</i></a>
             <div id="previousButton" class= "btn waves-effect waves-light " style="background-color:#5a17ee; border-radius: 30px; position: fixed; left: 400px; bottom: 15px; width: 10%;">Previous</div>
             <div id="nextButton" class= "btn waves-effect waves-light " style="background-color:#5a17ee; border-radius: 30px; position: fixed; right: 15px; bottom: 15px; width: 10%;">Next</div>
             <div id="submitButton" class= "btn waves-effect waves-light " style="background-color:#5a17ee; border-radius: 30px; position: fixed; right: 15px; bottom: 15px; width: 10%;">Submit</div>
         </div>
     </form>
+
+
+     <div id="modal2" class="modal">
+    <div class="modal-content">
+        <h4>Instruction</h4>
+        <p>  In this section of the codesign, we will replay your conversation with the chatbot, during this process, please help us correct the chatbot by answering the corresponding questions regarding Intents and Responses. <br> <br><u><b>Intents</b></u> refer to the goal or intention of any message you send to the chatbot. When you send a message to the chatbot, it will try and detect the correct meaning, or intent, of the message with a certain <u><b>confidence</b></u> as indicated by the confidence score out of 1.00. The example below illustrates how the chatbot detects that a listener is trying to greet them. <br> <br><table> <tbody> <tr> <td> Listener: “Hi!” </td> <td> Intent: greeting (confidence score = 0.98) </td> </tr></tbody> </table> <br><u><b>Responses</b></u> are given by the chatbot based on the intent. For example, if the intent is detected to be greeting, then a reasonable response from the chatbot would be “Hello”. <br>  <br><table> <tbody> <tr> <td> Listener: greeting </td> <td> Chatbot Response: "Hello" </td> </tr></tbody> </table>  <br>The chatbot isn’t perfect so if it fails to capture your Intent, it will likely provide an inadequate Response to your message. In this section, we will replay your conversations message by message and your task will be to improve the chatbot by choosing the most accurate Intents and reasonable Responses. Please press “Start” to begin.<br></p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>
 
     <div class="widget">
         <div class="chat_header">

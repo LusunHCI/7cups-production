@@ -11,7 +11,7 @@ var instances = M.Modal.init(elems);
 
 //initialization
 $(document).ready(function() {
-    
+
 //drop down menu for close, restart conversation & clear the chats.
 $('.dropdown-trigger').dropdown();
 
@@ -34,9 +34,9 @@ para = arrUrl[1];
 message_count=0;
 
 intentsDict={
-  "conventional_opening":"<b>conventional opening</b>: The listener is being courteous and seguing into discussion of the member's stressor.<br/> <i>Ex. How are you?, What's going on?</i>"
+  "conventional_opening":"<b>conventional&nbspopening</b>: The listener is being courteous and seguing into discussion of the member's stressor.<br/> <i>Ex. How are you?, What's going on?</i>"
   , "greeting":"<b>greeting</b>: The listener is saying hi to start the conversation <br/> <i>Ex: Hi, welcome to 7cups</i>"
-  , "open_question":"<b>open question</b>: The listener is trying to gather information, understand, or elicit the client's story. <br/><i>Ex. How long were you and your ex together?</i> "
+  , "open_question":"<b>open&nbspquestion</b>: The listener is trying to gather information, understand, or elicit the client's story. <br/><i>Ex. How long were you and your ex together?</i> "
   , "facilitate":"<b>facilitate:</b> The listener is trying to get more details from the member regarding their conflict. <br/> <i>Ex. Can you tell me more about what happened?</i>"
   , "reflect": "<b>reflect</b>: The listener is reflecting their understanding of the information they have recieved from the member. <br/> <i>Ex. So you were together for 6 months. </i>"
   , "empathy": "<b>empathy</b>: The listener is demonstrating their empathy. <br/> <i>Ex. I felt the same way with my ex.</i>"
@@ -83,7 +83,7 @@ currentShow=0;
 
 // // ========================== let the bot start the conversation ========================
 // function action_trigger() {
-  
+
 // // send an event to the bot, so that bot can start the conversation by greeting the user
 //   $.ajax({
 //     url: `http://127.0.0.1/rasa/conversations/${para}/execute`,
@@ -91,14 +91,14 @@ currentShow=0;
 //     contentType: "application/json",
 //     data: JSON.stringify({ "name": action_name, "policy": "MappingPolicy", "confidence": "0.98" }),
 //     success: function(botResponse, status) {
-  
+
 //     if (botResponse.hasOwnProperty("messages")) {
 //       setBotResponse(botResponse.messages);
 //     }
 //     $("#userInput").prop('disabled', false);
 //   },
 // error: function(xhr, textStatus, errorThrown) {
-  
+
 //     // if there is no response from rasa server
 //     setBotResponse("");
 //     console.log("Error from bot end: ", textStatus);
@@ -113,7 +113,7 @@ $(".usrInput").on("keyup keypress", function(e) {
   
   var text = $(".usrInput").val();
   if (keyCode === 13) {
-    
+
    if (text == "" || $.trim(text) == "") {
     e.preventDefault();
     return false;
@@ -179,18 +179,18 @@ if(message_count==1) {
     var end=document.getElementById("endConversation").className.indexOf('disabled');
     if(end==-1)  {
       console.log(end);
-    M.toast({html: "It's time to end the conversation. Say goodbye to Andrew! "})
-  }
-  else {
-    console.log('ok'+end);
-  }
-  },600000);
+      M.toast({html: "Try to wrap up the conversation with Andrew as you normally would."})
+    }
+    else {
+      console.log('ok '+end);
+    }
+  },540000);
 }
 }
 
 //=========== Scroll to the bottom of the chats after new message has been added to chat ======
 function scrollToBottomOfResults() {
-  
+
   var terminalResultsDiv = document.getElementById("chats");
   terminalResultsDiv.scrollTop = terminalResultsDiv.scrollHeight;
   var terminalResultsDivC = document.getElementById("feedback");
@@ -199,7 +199,7 @@ function scrollToBottomOfResults() {
 
 //============== send the user message to rasa server =============================================
 function send(message) {
-  
+
   var rasaUrl = document.location.protocol + "//" + document.location.hostname + "/rasa";
   //var rasaUrl="http://localhost:5005"
   $.ajax({
@@ -208,7 +208,7 @@ function send(message) {
    contentType: "application/json",
    data: JSON.stringify({ message: message, sender: para }),
    success: function(botResponse, status) {
-    
+
     // if user wants to restart the chat and clear the existing chat contents
     if (message.toLowerCase() == '/restart') {
       $("#userInput").prop('disabled', false);
@@ -221,7 +221,7 @@ function send(message) {
       
     },
     error: function(xhr, textStatus, errorThrown) {
-      
+
      if (message.toLowerCase() == '/restart') {
         // $("#userInput").prop('disabled', false);
         
@@ -239,14 +239,7 @@ function send(message) {
   var message_id=para+message_count.toString();
   var msgid=message_count.toString();
   
-  $.ajax({
-   url: "/userMessage",
-   type: "POST",
-   contentType: 'application/json;charset=UTF-8',
-   data: JSON.stringify({ 'message_id': message_id, 'message': message, 'chatroom_id': para, 'message_type': 0,'sender_id': para}),
-   success: function() {
-   }
- });
+
   var intent="";
   $.ajax({
    url: rasaUrl+"/model/parse",
@@ -258,7 +251,15 @@ function send(message) {
     ranking=json['intent_ranking'];
     appendIntents(intent, message,ranking,msgid);
   }
-});
+  });
+  $.ajax({
+   url: "/userMessage",
+   type: "POST",
+   contentType: 'application/json;charset=UTF-8',
+   data: JSON.stringify({ 'message_id': message_id, 'message': message, 'chatroom_id': para, 'message_type': 0,'sender_id': para}),
+   success: function() {
+   }
+ });
 }
 
 //===================append Intents and scores to interface ===================================
@@ -270,9 +271,14 @@ function appendIntents(intent, message,ranking,msgid) {
   $(tempdiv).appendTo(".feedback");
   divid='#'+divid;
   $(divid).hide();
-  var listenerMessage='<h6>Your message</h6> <div class="lmsg"> <p class="listenerMsg">' + message + '</p> </div> <div class="selectIntents"> <p> The chatbot interpreted the intent of your message as "' +intent['name'].toString().replace('_','')+ '" with the confidence as ' +Number(intent['confidence']).toFixed(2)+ '/1.00. </p></div>';
+  var listenerMessage='<h6>Your message</h6> <div class="lmsg"> <p class="listenerMsg">' + message + '</p> </div> <div class="selectIntents"> <p> The chatbot interpreted the intent of your message as "' +intent['name'].toString().replace('_',' ')+ '" with the confidence as ' +Number(intent['confidence']).toFixed(2)+ '/1.00. </p></div>';
   $(listenerMessage).appendTo(divid);
-  var intentCard='<div class="intentCard"><div class="card"><div class="card-content">'+ intentsDict[intent['name']].replace('_',' ') +'</div> </div> </div>';
+  var currentIntent='<input type="text" class="hiddenInput" name="currentIntent'+message_count.toString()+'" id="currentIntent'+message_count.toString()+'" style="height:1px;display:none;">';
+  $(currentIntent).appendTo(divid);
+  $('#currentIntent'+message_count.toString()).val(intent['name'].toString());
+  console.log(intent['name'].toString());
+  console.log($('#currentIntent'+message_count.toString()).val());
+  var intentCard='<div class="intentCard"><div class="card"><div class="card-content">'+ intentsDict[intent['name']].replace('_','&nbsp') +'</div> </div> </div>';
   $(intentCard).appendTo(divid);
   var isCorrect="<div class=isCorrect><p> Did this capture your intention?</p></div>";
   $(isCorrect).appendTo(divid);
@@ -301,9 +307,9 @@ $(otherIntent).appendTo(divid);
 function addOneNewIntent(msgid) {
   var valueSelect=$("#intentsselect"+msgid+" option:selected").val(); 
   if(valueSelect=='Add_More') {
-      $('#otherIntent'+msgid).show();
-      var terminalResultsDivC = document.getElementById("feedback");
-      terminalResultsDivC.scrollTop = terminalResultsDivC.scrollHeight;
+    $('#otherIntent'+msgid).show();
+    var terminalResultsDivC = document.getElementById("feedback");
+    terminalResultsDivC.scrollTop = terminalResultsDivC.scrollHeight;
   }
 }
 
@@ -319,7 +325,7 @@ function appendActions(botmessage,msg_type,msgid) {
    $(botMessage).appendTo(divid);
    var isResonable='<div class="choiceButton"> <input type="text" class="hiddenInput" name="yesno'+msgid+'" id="yesno'+msgid+'" style="height:1px;display:none;"> <br/> <button class="yesaction btn" id="yesAction'+msgid+'" onclick="yesaction('+msgid+')" type="button" style="background-color:white;border-radius:30px; border: 2px solid #5a17ee; color: #5a17ee"> Yes </button>  <button class="noaction btn" id="noAction'+msgid+'" onclick="noaction('+msgid+')" type="button" style="background-color:white;border-radius:30px; border: 2px solid #5a17ee; color: #5a17ee"> No </button> </div>';
    $(isResonable).appendTo(divid);
-   var yesGuide="<div class='yesGuide' id='yesGuide"+msgid+"'><p style='float:left; width: 100%;'>If you think this response is reasonable, press the Next button. </p> </div>";
+   var yesGuide="<div class='yesGuide' id='yesGuide"+msgid+"'><p style='float:left; width: 100%;'>If , press the Next button. </p> </div>";
    $(yesGuide).appendTo(divid);
    var noGuide="<div class='noGuide' id='noGuide"+msgid+"'><p style='float:left; width: 100%;'>Please select a more reasonable reply from below. </p> </div>";
    $(noGuide).appendTo(divid);
@@ -350,7 +356,7 @@ function appendActions(botmessage,msg_type,msgid) {
       actionRanking+="</select> </div> </div>";
       $(actionRanking).appendTo(divid);
       $('select').formSelect();
-      var otherResponse="<div class='otherResponse' id='otherResponse"+msgid+"'><p>How else could the chatbot reply to your message?</p> <textarea class='materialize-textarea' name='other"+msgid+"' id='other"+msgid+"' style='float:left;width:100%;'></textarea>  </div>";
+      var otherResponse="<div class='otherResponse' id='otherResponse"+msgid+"'><p>How else could the chatbot reply to your message?</p> <textarea class='materialize-textarea' placeholder=' e.g. Hi, I\’m Andrew, I\’m here to seek help.' name='other"+msgid+"' id='other"+msgid+"' style='float:left;width:100%;'></textarea>  </div>";
       $(otherResponse).appendTo(divid);
     }
   });
@@ -432,7 +438,7 @@ $("#submitButton").on("click", function(e) {
 
 //=================== set bot response in the chats ===========================================
 function setBotResponse(response) {
-  
+
   var url = window.location.href;
   var arrUrl = url.split("%3F");
   var para = arrUrl[1];
@@ -450,7 +456,7 @@ if (response.length < 1) {
     
     $(BotResponse).appendTo(".chats").hide().fadeIn(1000);
   } else {
-    
+
     //if we get response from Rasa
     for (i = 0; i < response.length; i++) {
       var msg_type=0
@@ -483,7 +489,7 @@ if (response.length < 1) {
         // }
         
         // if (response[i].hasOwnProperty("custom")) {
-          
+
         //     check if the custom payload type is "dropDown"
         //     if (response[i].custom.payload == "dropDown") {
         //      dropDownData = response[i].custom.data;
@@ -624,9 +630,9 @@ function yesaction(msgid) {
   yes.style="background-color:#5a17ee; color:white; border-radius:30px";
   var no=document.getElementById("noAction"+msgid);
   no.style="background-color:white; border-radius:30px; border: 2px solid #5a17ee; color: #5a17ee";
-  $("#yesGuide"+msgid).show();
+  $("#yesGuide"+msgid).hide();
   $("#noGuide"+msgid).hide();
-  $("#otherResponse"+msgid).hide();
+  $("#otherResponse"+msgid).show();
   $("#actionOption"+msgid).hide();
 }
 
@@ -639,7 +645,7 @@ function yesaction(msgid) {
 
 //====================================== functions for drop-down menu of the bot  =========================================
 function createCardsCarousel(cardsData) {
-  
+
   var cards = "";
   
   for (i = 0; i < cardsData.length; i++) {
@@ -658,7 +664,7 @@ function createCardsCarousel(cardsData) {
 
 //======================================bot typing animation ======================================
 function showBotTyping() {
-  
+
   var botTyping = '<img class="botAvatar" id="botAvatar" src="../static/img/andrew_avatar.png"/><div class="botTyping">' + '<div class="bounce1"></div>' + '<div class="bounce2"></div>' + '<div class="bounce3"></div>' + '</div>'
   $(botTyping).appendTo(".chats");
   $('.botTyping').show();
