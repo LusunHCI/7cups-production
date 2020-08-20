@@ -95,9 +95,11 @@ def submitCodesign():
 		msgid=[]
 		for key, value in items:
 			value=value.replace('%20',' ')
+			value=value.replace('%2C',',')
+			value=value.replace("\'","_")
 			print(str(key) + '   ' + str(value))
 			if value=='':
-				value='null'
+				value=''
 			mid=re.findall(r"\d",key)
 			num=""
 			for n in range(0,len(mid)):

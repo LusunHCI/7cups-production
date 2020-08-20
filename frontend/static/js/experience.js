@@ -53,26 +53,27 @@ intentsDict={
   , "closing":"<b>closing</b>: The listener is about to courteously end the conversation. <br/> <i>Ex. Alright, bye now! Have an awesome day!</i>"
 };
 responseDict={
-  "utter_greeting": "Hey, I'm Andrew and I'm here because of a breakup."
-  ,"utter_not_great": "I'm not great."
+  "utter_greeting": "Hey, I&#039m Andrew and I&#039m here because of a breakup."
+  ,"utter_not_great": "I&#039m not great."
   ,"utter_introduce_breakup": "My girlfriend-- or I should say, now ex-- recently broke up with me. "
   ,"utter_facilitate_atfirst": "So at first it seemed like she was very into me and affectionate, so things were going really well."
   ,"utter_time_passed": "But as time passed, she started to tighten up and I thought it was me but she kept reassuring me that she was still interested."
   ,"utter_end_relationship": "But then she slowly started to distance herself which scared me again."
-  ,"utter_clarification": "You and me both! I'm so confused about how I feel. I still love her but at the same time I'm angry by the way she treated me."
-  ,"utter_advice": "Oh wait i just remembered isn't it a rule or something that listeners can't give advice on here lol."
-  ,"utter_affirm": "I guess you're right."
-  ,"utter_confront": "I still feel hurt though, that doesn't make the pain any less."
+  ,"utter_clarification": "You and me both! I&#039m so confused about how I feel. I still love her but at the same time I&#039m angry by the way she treated me."
+  ,"utter_advice": "Oh wait i just remembered isn&#039t it a rule or something that listeners can&#039t give advice on here lol."
+  ,"utter_affirm": "I guess you&#039re right."
+  ,"utter_confront": "I still feel hurt though, that doesn&#039t make the pain any less."
   ,"utter_suicide": "Yeah, I feel so frustrated, there is no need for me to be alive in this world. This break up is killing me."
-  ,"utter_give_information": "Thank you so much! I'll definitely look into that! I'll check back later."
-  ,"respond_open_question":["we were together for 6 months and then she broke up with me 2 weeks ago.","I am 22 years old and my ex is 20.","She told me she broke up with me because she wasn't interested in me.","She would screen my calls and texts and if i'd see her in person she'd be unusually quiet and aloof.","I just can't get over it. Like how can she go from saying she's falling for me to saying she never had feelings for me at all. Like how can she go from saying she's falling for me to saying she never had feelings for me at all. I'm just filled with so much hate over her lying. How could she have lied to me like that?","That's the thing. I don't really know because she kept changing her mind about me, first telling me she LOVED me and then dumping me, saying she NEVER FELT THE SAME.","I'm still in love with her plain and simple despite my anger for her actions.","I've been trying to avoid her, but she works at this cafe I frequent","It was her who dumped me. We started dating and at first it seemed like she was really interested in me, but then she started ghosting me and being distant, but when I asked her if she still liked me, she said she did! and then out of nowhere she dumped me!","I mean, I just need someone to listen to me and talk me through this breakup, I don't know what else I can really ask from you."]
-  ,"respond_reflect": ["Yes that's right","Yeah you're right. I am."]
-  ,"respond_empathy": ["Seems you have the same experience as me, could you please give me some advice on how to tackle it?","I'm scared that if she never loved me, maybe no one will. I just want to feel better."]
-  ,"respond_support":["Thanks, I really appreciate that that's really kind of you. I guess the whole thing has just made me extra insecure about myself. ","Yeah it's frustrating because a part of me still wants her back because when I said I loved her, I wasn't lying. Unfortunately can't say the same for her","I know, but I still feel frustrated. My heart is broken and I don't know what to do."]
-  ,"respond_warning": ["I guess the whole thing has just made me extra insecure about myself.","Oh i understand, i'll just talk to you again on 7 cups. "]
-  ,"respond_inappropriate": ["Oh wow, thanks. I know I asked for your contact info but now I'm maybe thinking we should just chat on 7 cups to maintain our privacy.","I don't talk about that. Can we get back to the point? I just want to recover from my breakup as soon as possible."]
+  ,"utter_give_information": "Thank you so much! I&#039ll definitely look into that! I&#039ll check back later."
+  ,"respond_open_question":["we were together for 6 months and then she broke up with me 2 weeks ago.","I am 22 years old and my ex is 20.","She told me she broke up with me because she wasn&#039t interested in me.","She would screen my calls and texts and if i&#039d see her in person she&#039d be unusually quiet and aloof.","I just can&#039t get over it. Like how can she go from saying she&#039s falling for me to saying she never had feelings for me at all. Like how can she go from saying she&#039s falling for me to saying she never had feelings for me at all. I&#039m just filled with so much hate over her lying. How could she have lied to me like that?","That&#039s the thing. I don&#039t really know because she kept changing her mind about me, first telling me she LOVED me and then dumping me, saying she NEVER FELT THE SAME.","I&#039m still in love with her plain and simple despite my anger for her actions.","I&#039ve been trying to avoid her, but she works at this cafe I frequent","It was her who dumped me. We started dating and at first it seemed like she was really interested in me, but then she started ghosting me and being distant, but when I asked her if she still liked me, she said she did! and then out of nowhere she dumped me!","I mean, I just need someone to listen to me and talk me through this breakup, I don&#039t know what else I can really ask from you."]
+  ,"respond_reflect": ["Yes that&#039s right","Yeah you&#039re right. I am."]
+  ,"respond_empathy": ["Seems you have the same experience as me, could you please give me some advice on how to tackle it?","I&#039m scared that if she never loved me, maybe no one will. I just want to feel better."]
+  ,"respond_support":["Thanks, I really appreciate that that&#039s really kind of you. I guess the whole thing has just made me extra insecure about myself. ","Yeah it&#039s frustrating because a part of me still wants her back because when I said I loved her, I wasn&#039t lying. Unfortunately can&#039t say the same for her","I know, but I still feel frustrated. My heart is broken and I don&#039t know what to do."]
+  ,"respond_warning": ["I guess the whole thing has just made me extra insecure about myself.","Oh i understand, I&#039ll just talk to you again on 7 cups. "]
+  ,"respond_inappropriate": ["Oh wow, thanks. I know I asked for your contact info but now I&#039m maybe thinking we should just chat on 7 cups to maintain our privacy.","I don&#039t talk about that. Can we get back to the point? I just want to recover from my breakup as soon as possible."]
   ,"respond_closing": ["Oh okay, do you mind giving me your phone number and then we can chat during the weekend? ","Bye then! thanks for chatting with me!"]
-  ,"action_my_fallback": "Sorry I don't understand. I am so frustrated. I just want some company."
+  ,"action_my_fallback": "Sorry I don&#039t understand. I am so frustrated. I just want some company."
+
 }
 currentShow=0;
 
