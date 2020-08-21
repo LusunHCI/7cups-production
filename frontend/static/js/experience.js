@@ -439,11 +439,6 @@ $("#submitButton").on("click", function(e) {
 
 //=================== set bot response in the chats ===========================================
 function setBotResponse(response) {
-
-  var url = window.location.href;
-  var arrUrl = url.split("%3F");
-  var para = arrUrl[1];
-  
   
 //display bot response after 500 milliseconds
 setTimeout(function() {
