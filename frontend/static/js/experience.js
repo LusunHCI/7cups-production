@@ -201,8 +201,8 @@ function scrollToBottomOfResults() {
 //============== send the user message to rasa server =============================================
 function send(message) {
 
-  //var rasaUrl = document.location.protocol + "//" + document.location.hostname + "/rasa";
-  var rasaUrl="http://localhost:5005"
+  var rasaUrl = document.location.protocol + "//" + document.location.hostname + "/rasa";
+  //var rasaUrl="http://localhost:5005"
   $.ajax({
    url: rasaUrl + "/webhooks/rest/webhook",
    type: "POST",
@@ -341,8 +341,8 @@ function appendActions(botmessage,msg_type,msgid) {
    var noGuide="<div class='noGuide' id='noGuide"+msgid+"'><p style='float:left; width: 100%;'>Please select a more reasonable reply from below. </p> </div>";
    $(noGuide).appendTo(divid);
    
-   //var rasaUrl = document.location.protocol + "//" + document.location.hostname + "/rasa";
-   var rasaUrl="http://localhost:5005"
+   var rasaUrl = document.location.protocol + "//" + document.location.hostname + "/rasa";
+   // var rasaUrl="http://localhost:5005"
    $.ajax({
     url: rasaUrl+"/conversations/"+para+"/predict",
     type:"POST",
