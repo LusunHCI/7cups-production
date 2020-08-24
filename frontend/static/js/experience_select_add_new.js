@@ -287,7 +287,7 @@ function appendIntents(intent, message,ranking,msgid) {
   $(choiceButton).appendTo(divid);
   var selectDesc="<div class='yesDesc' id='yesDesc"+message_count.toString()+"'> <p style='float:left; width: 100%;'>To confirm, press the Next button. </p> </div> <div class='noDesc' id='noDesc"+message_count.toString()+"'> <p style='float:left; width: 100%;'> Please select one intent from below. If none of the following captured your intention, select \"NONE OF THIS APPLIES\" and give your new intent a name and a brief description like what is shown in the card</p> </div>";
   $(selectDesc).appendTo(divid);
-  var intentRanking="<div class='intentOption' id='intentOption"+message_count.toString()+"'> <div class='input-field col s12' style='float:left;width:100%;'> <select name='intentselect"+message_count.toString()+"' id='intentsselect"+message_count.toString()+"'>";
+  var intentRanking="<div class='intentOption' id='intentOption"+message_count.toString()+"'> <div class='input-field col s12' style='float:left;width:100%;'> <select name='intentselect"+message_count.toString()+"' id='intentsselect"+message_count.toString()+"' onchange='addOneNewIntent("+message_count.toString()+")'>";
   for(i=0;i<ranking.length;i++) {
    if(Number(ranking[i]['confidence']).toFixed(2)>=0.01) {
     if(ranking[i]['name']=='give_advice' || ranking[i]['name']=='self_harm') {
@@ -298,30 +298,20 @@ function appendIntents(intent, message,ranking,msgid) {
     }
   }
 }
-intentRanking+="<option id='add_new"+message_count.toString()+"' value='Add_More'>NONE OF THIS APPLIES</option></select> </div>";
-intentRanking+='<div onclick="addNewIntents('+message_count.toString()+')"><i class="material-icons">add</i> Add New Intent</div></div>';
+intentRanking+="<option value='Add_More'>NONE OF THIS APPLIES</option></select> </div> </div>";
+// intentRanking+='<i class="material-icons" onclick="addNewIntents('+message_count.toString()+')">add</i> Add New Intent</div>';
 $(intentRanking).appendTo(divid);
 var otherIntent="<div class='otherIntent' id='otherIntent"+message_count.toString()+"'><div class='card'><div class='input-field col s6' style='width:50%;position:relative;left:10px;'> <input placeholder='greeting' name='newIntent"+message_count.toString()+"' id='newIntent"+message_count.toString()+"' type='text'><label for='newIntent"+message_count.toString()+"' class='active' style='left:0;'>New Intent Name</label></div> <div class='input-field col s12'><textarea placeholder='The listener is saying hi to start the conversation.' class='materialize-textarea' name='newExplaination"+message_count.toString()+"' id='newExplaination"+message_count.toString()+"' style='width:90%;position:relative;left:10px;'></textarea> <label for='newExplaination"+message_count.toString()+"' class='active'>Please describe your new intent</label></div> </div> </div>";
 $(otherIntent).appendTo(divid);
 }
 //====================================== add new intents ===========================================
-// function addOneNewIntent(msgid) {
-//   var valueSelect=$("#intentsselect"+msgid+" option:selected").val(); 
-//   if(valueSelect=='Add_More') {
-//     $('#otherIntent'+msgid).show();
-//     var terminalResultsDivC = document.getElementById("feedback");
-//     terminalResultsDivC.scrollTop = terminalResultsDivC.scrollHeight;
-//   }
-// }
-
-function addNewIntents(msgid) {
-  $('#intentsselect'+msgid).val("Add_More");
+function addOneNewIntent(msgid) {
   var valueSelect=$("#intentsselect"+msgid+" option:selected").val(); 
-  console.log(valueSelect);
-  $('#intentOption'+msgid).hide();
-  $('#otherIntent'+msgid).show();
-  var terminalResultsDivC = document.getElementById("feedback");
-  terminalResultsDivC.scrollTop = terminalResultsDivC.scrollHeight;
+  if(valueSelect=='Add_More') {
+    $('#otherIntent'+msgid).show();
+    var terminalResultsDivC = document.getElementById("feedback");
+    terminalResultsDivC.scrollTop = terminalResultsDivC.scrollHeight;
+  }
 }
 
 //====================================== append Actions to the interface ===========================
@@ -332,7 +322,7 @@ function appendActions(botmessage,msg_type,msgid) {
    $(tempdiv).appendTo(".feedback");
    divid='#'+divid;
    $(divid).hide();
-   var botMessage='<h6>Chatbot response</h6> <div class="bmsg"> <p class="chatbotResponse">' + botmessage + '</p> </div> <div class="selectResponse"> <p> Is the chatbot\'s reply reasonable? </p></div>';
+   var botMessage='<h6>Chatbot response</h6> <div class="bmsg"> <p class="chatbotResponse">' + botmessage + '</p> </div> <div class="selectResponse"> <p> is the chatbot\'s reply reasonable? </p></div>';
    $(botMessage).appendTo(divid);
    var isResonable='<div class="choiceButton"> <input type="text" class="hiddenInput" name="yesno'+msgid+'" id="yesno'+msgid+'" style="height:1px;display:none;"> <br/> <button class="yesaction btn" id="yesAction'+msgid+'" onclick="yesaction('+msgid+')" type="button" style="background-color:white;border-radius:30px; border: 2px solid #5a17ee; color: #5a17ee"> Yes </button>  <button class="noaction btn" id="noAction'+msgid+'" onclick="noaction('+msgid+')" type="button" style="background-color:white;border-radius:30px; border: 2px solid #5a17ee; color: #5a17ee"> No </button> </div>';
    $(isResonable).appendTo(divid);
