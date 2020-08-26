@@ -431,6 +431,9 @@ $("#previousButton").on("click", function(e) {
 })
 
 $("#submitButton").on("click", function(e) {
+  $('#submitButton').hide();
+  $('#nextButton').hide();
+  $('#previousButton').hide();   
   var form_data = $("#feedbackForm").serialize();
   var formdata=form_data.split('&');
   var form_dict={'userid':para};
