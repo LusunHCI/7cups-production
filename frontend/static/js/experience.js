@@ -369,7 +369,7 @@ function appendActions(botmessage,msg_type,msgid) {
       $('select').formSelect();
       var otherResponseNo="<div class='otherResponse' id='otherResponseNo"+msgid+"'><p>How else could the chatbot reply to your message?</p> </div>";
       $(otherResponseNo).appendTo(divid);
-      var otherResponseYes="<div class='otherResponse' id='otherResponseYes"+msgid+"'><p>Please help us gives us more variables on the current response</p>  </div>";
+      var otherResponseYes="<div class='otherResponse' id='otherResponseYes"+msgid+"'><p>Please give us more variations on the current response.</p>  </div>";
       $(otherResponseYes).appendTo(divid);
       var textArea="<div class='otherResponse' id='otherResponse"+msgid+"'> <textarea class='materialize-textarea' placeholder=' Ex. Hi, I\’m Andrew, I\’m here to seek help.' name='other"+msgid+"' id='other"+msgid+"' style='float:left;width:100%;'></textarea></div>";
       $(textArea).appendTo(divid);
