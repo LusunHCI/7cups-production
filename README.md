@@ -1,4 +1,4 @@
-# Rasa Deployment
+# 7 Cups deplyment
 Deploying Rasa Bot on Google Cloud Platform using Docker.
 
 ## Prerequisites:
