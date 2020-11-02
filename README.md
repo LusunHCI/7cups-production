@@ -45,7 +45,7 @@ Deploying Rasa Bot on Google Cloud Platform using Docker.
 
 #### Clone the Docker App
 
-- > git clone https://github.com/JiteshGaikwad/Rasa_Deployment
+- > git clone https://github.com/LusunHCI/7cups-production
 - > cd Rasa_Deployment
 
 #### Build the Docker app and run the services:
