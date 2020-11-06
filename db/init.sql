@@ -14,6 +14,7 @@ CREATE TABLE codesign (
   message_id varchar(45) NOT NULL,
   yesno varchar(45) DEFAULT NULL,
   intentselect varchar(100) DEFAULT NULL,
+  currentintent varchar(100) DEFAULT NULL,
   actionselect varchar(1000) DEFAULT NULL,
   other varchar(1000) DEFAULT NULL,
   chatroom_id varchar(100) DEFAULT NULL,
