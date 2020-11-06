@@ -4,8 +4,9 @@ WORKDIR /app
 COPY . /app
 COPY ./data /app/data
 
-# RUN python -m spacy download en_core_web_md
-# RUN python -m spacy link en_core_web_md en.
+# RUN pip3 install rasa[spacy]
+# RUN python3 -m spacy download en_core_web_md
+# RUN python3 -m spacy link en_core_web_md en.
 RUN  rasa train
 
 VOLUME /app
