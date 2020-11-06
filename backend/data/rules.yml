@@ -1,0 +1,66 @@
+version: "2.0"
+
+rules:
+- rule: respond to open_question
+  steps:
+  - intent: open_question
+  - action: utter_open_question
+- rule: respond to reflect
+  steps:
+  - intent: reflect
+  - action: utter_reflect
+- rule: respond to empathy
+  steps:
+  - intent: empathy
+  - action: utter_empathy
+- rule: respond to support
+  steps:
+  - intent: support
+  - action: utter_support
+- rule: respond to warning
+  steps:
+  - intent: warning
+  - action: utter_warning
+- rule: respond to inappropriate
+  steps:
+  - intent: inappropriate
+  - action: utter_inappropriate
+- rule: respond to closing
+  steps:
+  - intent: closing
+  - action: utter_closing
+- rule: respond to facilitate
+  steps:
+  - intent: facilitate
+  - action: utter_facilitate_atfirst
+  - action: utter_time_passed
+  - action: utter_end_relationship
+- rule: respond to conventional_opening
+  steps:
+  - intent: conventional_opening
+  - action: utter_not_great
+  - action: utter_introduce_breakup
+- rule: respond to clarification
+  steps:
+  - intent: clarification
+  - action: utter_clarification
+- rule: respond to give advice
+  steps:
+  - intent: give_advice
+  - action: utter_advice
+- rule: respond to affirm
+  steps:
+  - intent: affirm 
+  - action: utter_affirm
+- rule: respond to confront
+  steps:
+  - intent: confront
+  - action: utter_confront
+- rule: self_harm
+  steps:
+  - intent: self_harm
+  - action: utter_suicide
+- rule: respond to information
+  steps:
+  - intent: giving_information
+  - action: utter_give_information

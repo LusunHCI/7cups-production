@@ -11,6 +11,27 @@ app = Flask(__name__,static_folder='static',template_folder='static')
 def index():
 	return render_template('login.html')
 
+@app.route('/login/?<string:userid>', methods=['POST','GET'])
+def login(userid):
+	if request.method =='POST':
+		mydb = mysql.connector.connect(
+    	host="db",
+  		port=3306,
+    	user="root",
+    	password="lusun",
+    	database="7cups"
+		)
+		mycursor = mydb.cursor()
+		sql = "SELECT * from message where chatroom_id="+str(userid)+" limit 0,1;"
+		mycursor.execute(sql)
+		one=mycursor.fetchone()
+		mycursor.close()
+		mydb.close()
+		if one == None:
+			return jsonify({"msg": "login successfully!"}),200
+		else:
+			return jsonify({"msg":"user ID already exists!"}),400
+
 @app.route('/experience/?<string:userid>')
 def experience(userid):
     return render_template('experience.html')

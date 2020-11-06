@@ -21,7 +21,7 @@
 <body>
 <div class="card-panel z-depth-5" style="margin-left: 35%; margin-top: 15%; width: 30%;">
   <div class="col s12 m12 l12 center">
-    <h>Please Input the User ID You Received</h>
+    <h>Please input a User ID</h>
   </div>
   <div class="col s12 m12 l12" style="width:80%; margin-left: 10%">
     <div class="input-field">
@@ -40,12 +40,17 @@
   })
   function userLogin(userid) {
     $.ajax({
-      url: "/experience/%3F"+userid,
-      type: "GET",
+      url: "/login/%3F"+userid,
+      type: "POST",
       contentType: "application/x-www-form-urlencoded;",
       data: '',
       success: function() {
         window.location.href = '/experience/%3F'+userid;
+      },
+      error: function(msg) {
+        if(msg.status==400) {
+          M.toast({html: msg.responseJSON.msg});
+        }
       }
     });
   }

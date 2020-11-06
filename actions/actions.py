@@ -50,7 +50,7 @@ class ActionMyFallBack(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message(text="Sorry I don't understand. I am so frustrated. I just want some company.")
+        dispatcher.utter_message(text="Sorry I don't understand your words. I am so frustrated. I just want some company.")
         return []
 
 

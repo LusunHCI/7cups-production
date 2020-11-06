@@ -4,74 +4,128 @@ session_config:
 intents:
 - greeting
 - conventional_opening
-- open_question:
-    triggers: respond_open_question
+- open_question
 - facilitate
 - clarification
-- reflect:
-    triggers: respond_reflect
-- empathy:
-    triggers: respond_empathy
+- reflect
+- empathy
 - give_advice
-- support:
-    triggers: respond_support
-- warning:
-    triggers: respond_warning
+- support
+- warning
 - affirm
 - confront
 - self_harm
 - giving_information
-- inappropriate:
-    triggers: respond_inappropriate
-- closing: 
-    triggers: respond_closing
-
+- inappropriate
+- closing
 responses:
   utter_greeting:
   - text: Hey, I'm Andrew and I'm here because of a breakup.
+  - text: Hey, are you there?
+  - text: Hi, I'm seeking support for a breakup.
+  - text: Hey, I have a lot on my mind.
+  - text: Hello, I'm here because of a breakup.
   utter_not_great:
   - text: I'm not great.
+  - text: I've been struggling lately, dealing with my ex.
   utter_introduce_breakup:
+  - text: My ex-girlfriend, she led me on before finally dumping me and I've been feeling really frustrated over it.
+  - text: My ex kept changing her mind about me.
+  - text: My ex, after stringing me along for months, just broke up with me.
   - text: My girlfriend-- or I should say, now ex-- recently broke up with me.
+  - text: First telling me that she was interested and then ghosting me and then coming back to me before dumping me finally.
   utter_facilitate_atfirst:
-  - text: So at first it seemed like she was very into me and affectionate, so things
-      were going really well.
+  - text: So at first it seemed like she was very into me and affectionate, so things were going really well.
+  - text: At first, the relationship was great and it seemed like she really liked me. 
+  - text: We started dating and at first it seemed like she was really interested in me, 
   utter_time_passed:
-  - text: But as time passed, she started to tighten up and I thought it was me but
-      she kept reassuring me that she was still interested.
+  - text: And then after a while she started being distant but kept telling me she still liked me and even at one point that she was falling in love with me.
+  - text: But as time passed, she started to tighten up and I thought it was me but she kept reassuring me that she was still interested.
   utter_end_relationship:
-  - text: But then she slowly started to distance herself which scared me again.
+  - text: Then she started ghosting me again and then dumped me!
+  - text: Then she slowly started to distance herself which scared me again.
+  - text: But when I asked her if she still liked me, she said she did! and then out of nowhere she dumped me!
   utter_clarification:
-  - text: You and me both! I'm so confused about how I feel. I still love her but at the same time I'm angry by the way she treated me.
+  - text: I'm so confused about how I feel.
+  - text: I still love her but at the same time I'm angry by the way she treated me.
   utter_advice:
   - text: Oh wait i just remembered isn't it a rule or something that listeners can't give advice on here lol
+  - text: Who do you think you are? You can't tell me what to do!
   utter_affirm:
-  - text: I guess you're right. 
+  - text: I guess you're right.
   utter_confront:
-  - text: I still feel hurt though, that doesn't make the pain any less. 
+  - text: I still feel hurt though, that doesn't make the pain any less.
   utter_suicide:
   - text: Yeah, I feel so frustrated, there is no need for me to be alive in this world. This break up is killing me.
   utter_give_information:
   - text: Thank you so much! I'll definitely look into that! I'll check back later.
-
+  utter_open_question/relationship_length:
+  - text: We were together for 6 months and then she broke up with me 2 weeks ago.
+  utter_open_question/age_inquiry:
+  - text: I am 22 years old and my ex is 20.
+  utter_open_question/distant_how:
+  - text: She would screen my calls and texts and if i'd see her in person she'd be unusually quiet and aloof.
+  utter_open_question/reason:
+  - text: She told me she broke up with me because she wasn't interested in me.
+  utter_open_question/inquiry_feelings:
+  - text: I just can't get over it. Like how can she go from saying she's falling for me to saying she never had feelings for me at all.
+  - text: I'm just filled with so much hate over her lying. How could she have lied to me like that?
+  - text: It's the lying that's really affecting me. I don't understand how you can go from falling in love with somebody to saying you never had feelings in the first place.
+  - text: I just can't believe this is happening. We were both falling in love and now it's all over.
+  - text: I just don't understand why she didn't breakup with me when she started ghosting me the first time. 
+  - text: I'm upset. Why did she have to lie and say she was falling in love with me if she really wasn't and was going to dump me anyway.
+  - text: I'm pissed. She lied, strung me along, and made me believe she was falling for me when in reality she didn't feel anything.
+  utter_open_question/inquiry_ex_feelings:
+  - text: That's the thing. I don't really know because she kept changing her mind about me, first telling me she LOVED me and then dumping me, saying she NEVER FELT THE SAME.
+  utter_open_question/inquiry_feelings_about_ex:
+  - text: I'm still in love with her plain and simple despite my anger for her actions.
+  utter_open_question/inquiry_post_contact:
+  - text: I've been trying to avoid her, but she works at this cafe I frequent.
+  utter_open_question/inquiry_ending_process:
+  - text: It was her who dumped me. 
+  utter_open_question/support_inquiry:
+  - text: I mean, I just need someone to listen to me and talk me through this breakup,
+      I don't know what else I can really ask from you.
+  utter_reflect/simple_reflect:
+  - text: Yes that's right.
+  - text: Yeah exactly.
+  - text: Exactly.
+  - text: Yeah.
+  - text: That's it exactly.
+  utter_reflect/label_emotion:
+  - text: Yeah you're right. I am.
+  utter_empathy/self_disclosure:
+  - text: Seems you have the same experience as me, could you please give me some advice on how to tackle it?
+  utter_empathy/offer_condolence:
+  - text: I'm scared that if she never loved me, maybe no one will. 
+  - text: I'm upset now, I just want to feel better.
+  utter_support/compassion:
+  - text: Thanks, I really appreciate that  that's really kind of you. I guess the whole thing has just made me extra insecure about myself.
+  - text: That's really kind of you
+  - text: You're so nice!
+  - text: Thank you, I'm really grateful
+  utter_support/understanding:
+  - text: Yeah it's frustrating because a part of me still wants her back.
+  - text: When I said I love her, I wasn't lying. Unfortunately can't say the same for her.
+  utter_support/support_user_side:
+  - text: I know, but I still feel frustrated. My heart is broken and I don't know what to do.
+  - text: It’s just hard because I obviously want to feel like the person who got away and a person she reflects back on in the future.
+  utter_warning/no_advice:
+  - text: I guess the whole thing has just made me extra insecure about myself.
+  - text: I understand, I am not aware of this
+  - text: Oh I'm sorry I didn't know that.
+  - text: Oh I'm sorry.
+  - text: Why not?
+  - text: Oh, okay.
+  utter_warning/protect_personal_information:
+  - text: Oh i understand, i'll just talk to you again on 7 cups.
+  utter_inappropriate/listener_privacy:
+  - text: Oh wow, thanks. I know I asked for your contact info but now I'm maybe thinking we should just chat on 7 cups to maintain our privacy.
+  utter_inappropriate/inappropriate:
+  - text: I don't talk about that. Can we get back to the point? I just want to recover from my breakup as soon as possible.
+  utter_closing/end_conversation:
+  - text: Oh okay, do you mind giving me your phone number and then we can chat during the weekend?
+  utter_closing/bye:
+  - text: Bye then! thanks for chatting with me!
 actions:
-- utter_greeting
-- utter_not_great
-- utter_introduce_breakup
-- respond_open_question
-- utter_facilitate_atfirst
-- utter_time_passed
-- utter_end_relationship
-- utter_clarification
-- respond_reflect
-- respond_empathy
-- utter_advice
-- respond_support
-- respond_warning
-- utter_affirm
-- utter_confront
-- utter_suicide
-- utter_give_information
-- respond_closing
-- respond_inappropriate
 - action_my_fallback

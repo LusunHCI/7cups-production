@@ -1,0 +1,40 @@
+version: "2.0"
+
+stories:
+- story: normal path
+  steps:
+  - intent: greeting
+  - action: utter_greeting
+  - intent: conventional_opening
+  - action: utter_not_great
+  - action: utter_introduce_breakup
+  # - intent: open_question
+  # - action: utter_open_question
+  # - intent: facilitate
+  # - action: utter_facilitate_atfirst
+  # - action: utter_time_passed
+  # - action: utter_end_relationship
+  # - intent: clarification
+  # - action: utter_clarification
+  # - intent: reflect
+  # - action: utter_reflect
+  # - intent: empathy
+  # - action: utter_empathy
+  # - intent: give_advice
+  # - action: utter_advice
+  # - intent: support
+  # - action: utter_support
+  # - intent: warning
+  # - action: utter_warning
+  # - intent: affirm 
+  # - action: utter_affirm
+  # - intent: confront
+  # - action: utter_confront
+  # - intent: self_harm
+  # - action: utter_suicide
+  # - intent: giving_information
+  # - action: utter_give_information
+  # - intent: closing
+  # - action: utter_closing
+  # - intent: inappropriate
+  # - action: utter_inappropriate
