@@ -5,10 +5,15 @@ import mysql.connector
 from datetime import datetime
 import re
 
+
 app = Flask(__name__,static_folder='static',template_folder='static')
 
 @app.route('/',methods=['POST','GET'])
 def index():
+	return render_template('chat_intro.html')
+
+@app.route('/loginnow', methods=['POST','GET'])
+def loginnow():
 	return render_template('login.html')
 
 @app.route('/login/?<string:userid>', methods=['POST','GET'])
@@ -23,20 +28,24 @@ def login(userid):
 		)
 		mycursor = mydb.cursor()
 		sql = "SELECT * from message where chatroom_id="+str(userid)+" limit 0,1;"
+		print(sql)
 		mycursor.execute(sql)
 		one=mycursor.fetchone()
 		mycursor.close()
 		mydb.close()
+		print(one==None)
 		if one == None:
+			print('none')
 			return jsonify({"msg": "login successfully!"}),200
 		else:
-			return jsonify({"msg":"user ID already exists!"}),400
+			return jsonify({"msg":"user ID already exists! Please try another one!"}),400
+
 
 @app.route('/experience/?<string:userid>')
 def experience(userid):
     return render_template('experience.html')
 
-@app.route('/userMessage', methods=['POST','GET'])
+@app.route('/userMessage/', methods=['POST','GET'])
 def userMessage():
 	if request.method =='GET':
 		print("get")
@@ -47,7 +56,7 @@ def userMessage():
     	user="root",
     	password="lusun",
     	database="7cups"
-  		)
+		)
 		mycursor = mydb.cursor()
 		message_id=request.json['message_id']
 		chatroom_id=int(request.json['chatroom_id'])
@@ -63,7 +72,7 @@ def userMessage():
 		mydb.close()
 	return render_template('experience.html')
 
-@app.route('/botResponse', methods=['POST','GET'])
+@app.route('/botResponse/', methods=['POST','GET'])
 def botResponse():
 	if request.method =='GET':
 		print("get")
@@ -74,7 +83,7 @@ def botResponse():
     	user="root",
     	password="lusun",
     	database="7cups"
-  		)
+		)
 		mycursor = mydb.cursor()
 		message_id=request.json['message_id']
 		chatroom_id=int(request.json['chatroom_id'])
@@ -95,7 +104,7 @@ def botResponse():
 		mycursor.close()
 		mydb.close()
 	return render_template('experience.html')
-@app.route('/submitCodesign', methods=['POST','GET'])
+@app.route('/submitCodesign/', methods=['POST','GET'])
 def submitCodesign():
 	if request.method =='GET':
 		print("get")
@@ -106,7 +115,7 @@ def submitCodesign():
     	user="root",
     	password="lusun",
     	database="7cups"
-  		)
+		)
 		mycursor = mydb.cursor()
 		form_json = json.loads(request.data)
 		userid=form_json['userid']
@@ -115,10 +124,10 @@ def submitCodesign():
 		items = form_json.items()
 		msgid=[]
 		for key, value in items:
+			print(str(key) + '   ' + str(value))
 			value=value.replace('%20',' ')
 			value=value.replace('%2C',',')
 			value=value.replace("\'","_")
-			print(str(key) + '   ' + str(value))
 			if value=='':
 				value=''
 			mid=re.findall(r"\d",key)
@@ -138,7 +147,6 @@ def submitCodesign():
 				val=(userid+num,userid,value)
 				mycursor.execute(sql,val)
 			else:
-				value=value.replace("'","_")
 				sql = "UPDATE codesign set "+field+"='"+value+"' where message_id="+(userid+num)
 				mycursor.execute(sql)
 		mydb.commit()
@@ -146,8 +154,9 @@ def submitCodesign():
 		mydb.close()
 	return render_template('experience.html')
 
-if __name__ == '__main__':
-	app.run(debug=True, host='0.0.0.0')
+
+
+
 
 
 

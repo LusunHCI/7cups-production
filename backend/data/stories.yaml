@@ -5,9 +5,9 @@ stories:
   steps:
   - intent: greeting
   - action: utter_greeting
-  - intent: conventional_opening
-  - action: utter_not_great
-  - action: utter_introduce_breakup
+  # - intent: conventional_opening
+  # - action: utter_not_great
+  # - action: utter_introduce_breakup
   # - intent: open_question
   # - action: utter_open_question
   # - intent: facilitate

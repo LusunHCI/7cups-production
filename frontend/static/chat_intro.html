@@ -1,0 +1,216 @@
+<html>
+</!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat-Introduction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500&display=swap" rel="stylesheet">
+
+    <!--Import Font Awesome Icon Font-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+
+    <!--Import materialize.css-->
+    <link rel="stylesheet" type="text/css" href="static/css/materialize.min.css">
+
+    <!--Main css-->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    .layui-layer-tips .layui-layer-content {
+        font-size: 16px !important;
+    }
+</style>
+
+<body>
+
+    <nav>
+        <div class="nav-wrapper" style=" background-color: #5a17ee;">
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li class="active" id="experience" onmouseover="exp_tip()"><a>Experience the Chatbot</a></li>
+                <li id="codesign"><a>Co-design Activities</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="instruction" id="instruction"
+        style="width:calc(100% - 400px); position: fixed; left: 400px; bottom: 50px; top:65px">
+        <h4>Instructions</h4>
+        <p class="experience_instruction">
+            Please try to communicate with the chatbot on the left. The chatbot will simulate a 7 cups member
+            struggling with their breakup that you, as a listener, can help and further develop your skills as a
+            listener. The chatbot is not perfect so if you encounter a misstep in your conversation with the
+            chatbot, just try to continue the conversation in a new direction. In the co-design activities that
+            follow your interaction with the chatbot, you will have an opportunity to correct these missteps. Try to
+            interact with the chatbot for 10 minutes. When you are done interacting with the chatbot, click “End the
+            conversation” to move on to the next section of co-design. In the next co-design stage, you will go
+            through these messages and answer several questions to help us improve this chatbot.
+        </p>
+    </div>
+    <div class="startButton">
+        <div id='startBtn' class='btn waves-effect waves-light'
+            style='background-color:#5a17ee; position: fixed; right: 15px; bottom: 5px; width: 10%; border-radius:30px;'>
+            Start</div>
+    </div>
+
+    <div class="widget">
+        <div class="chat_header">
+
+            <!--Add the name of the bot here -->
+            <span class="chat_header_title">Chat with Andrew</span>
+        </div>
+
+        <!--Chatbot contents goes here -->
+        <div class="chats" id="chats">
+            <div class="clearfix"></div>
+            <img class="userAvatar" src="../static/img/userAvatar.jpg">
+            <p class="userMsg" id="conversationMsg1">Hi, welcome to 7cups of tea. </p>
+            <div class="clearfix"></div>
+            <img class="botAvatar" src="../static/img/andrew_avatar.png" style="">
+            <p class="botMsg" id="conversationMsg2" style="">Hey, are you there?</p>
+            <div class="clearfix" style=""></div>
+            <img class="userAvatar" src="../static/img/userAvatar.jpg">
+            <p class="userMsg" id="conversationMsg3">yes, how are you? </p>
+            <div class="clearfix"></div>
+            <img class="botAvatar" src="../static/img/andrew_avatar.png" style="">
+            <p class="botMsg" id="conversationMsg4" style="">I've been struggling lately, dealing with my ex.</p>
+            <div class="clearfix" style=""></div>
+            <img class="botAvatar" src="../static/img/andrew_avatar.png" style="">
+            <p class="botMsg" id="conversationMsg5" style="">My girlfriend-- or I should say, now ex-- recently broke up
+                with me.</p>
+            <div class="clearfix" style=""></div><img class="userAvatar" src="../static/img/userAvatar.jpg">
+            <p class="userMsg" id="conversationMsg6">Oh, I'm sorry to hear that. </p>
+            <div class="clearfix"></div>
+            <div id="chatbotTyping7" onmouseover="bot_tip()"><img class="botAvatar" src="../static/img/andrew_avatar.png">
+                <div class="botTyping" style="padding: 10px!important;">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--keypad for user to type the message -->
+        <div class="keypad" onmouseover="chat_tip()">
+            <textarea id="userInput" placeholder="Type a message..." class="usrInput" spellcheck="false"
+                disabled="disabled"></textarea>
+            <div id="sendButton"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>
+        </div>
+    </div>
+    <div class="endButton" onmouseover="end_tip()">
+        <div id="endConversation" class="btn waves-effect waves-light disabled"
+            style="background: #5a17ee; width: 80%; left: 35px; border-radius:30px;">End the Conversation</div>
+    </div>
+
+
+
+</body>
+
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="static/layui/layui.all.js"></script>
+<script type="text/javascript" src="/static/js/materialize.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        start_tip();
+    });
+    window.start_tip = function () {
+        var start_tip = 'Read instructions and click anywhere to start!'
+        layer.open({
+            type: 4,
+            content: [start_tip, '#instruction'],
+            area: 'auto',
+            shadeClose: true,
+            maxWidth: '50%',
+            minWidth: '10%',
+            end: function () {
+                exp_tip();
+            }
+        });
+    }
+    window.exp_tip = function () {
+        var exp_tip = 'In the first part of the experiment, you will engage in a conversation with a chatbot named Andrew.';
+        layer.open({
+            type: 4,
+            content: [exp_tip, '#experience'],
+            area: 'auto',
+            shadeClose: true,
+            maxWidth: '50%',
+            minWidth: '10%',
+            end: function () {
+                bot_tip();
+            }
+        });
+    }
+
+    window.bot_tip = function () {
+        var bot_tip = 'A chatbot is a conversational agent that uses natural language processing and artificial intelligence to communicate with its users.';
+        layer.open({
+            type: 4,
+            content: [bot_tip, '#chatbotTyping7'],
+            area: 'auto',
+            shadeClose: true,
+            maxWidth: '50%',
+            minWidth: '10%',
+            tips: '1',
+            end: function () {
+                chat_tip();
+            }
+        });
+    }
+
+    window.chat_tip = function () {
+        var chat_tip = 'You will serve as a listener to Andrew as he reveals how his recent breakup has been affecting him emotionally. As you listen and interact with Andrew, your goal is to support him through empathy, affirmation, and active listening.';
+        layer.open({
+            type: 4,
+            content: [chat_tip, '#userInput'],
+            area: 'auto',
+            shadeClose: true,
+            maxWidth: '40%',
+            minWidth: '10%',
+            tips: '2',
+            end: function () {
+                $('#endConversation').removeClass('disabled');
+                end_tip();
+            }
+        });
+    }
+
+    window.end_tip = function () {
+        var end_tip = 'After 10 minutes chatting with Andrew, you can click here to start co-design activites';
+        layer.open({
+            type: 4,
+            content: [end_tip, '#endConversation'],
+            area: 'auto',
+            shadeClose: true,
+            maxWidth: '40%',
+            minWidth: '10%',
+            tips: '1',
+            end: function () {
+                $('.startButton').show();
+                login_tip();
+            }
+        });
+    }
+    window.login_tip = function () {
+        var login_tip = 'If you still have questions about this process, hover your mouse on each component to get the instruction again. If you are ready, click me and login to chat!';
+        layer.open({
+            type: 4,
+            content: [login_tip, '#startBtn'],
+            area: 'auto',
+            shadeClose: true,
+            maxWidth: '40%',
+            minWidth: '10%',
+            tips: '1',
+        });
+    }
+    $('#startBtn').click(function () {
+        window.location = "/loginnow";
+    })
+</script>
