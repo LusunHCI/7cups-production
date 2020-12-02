@@ -5,12 +5,11 @@ import mysql.connector
 from datetime import datetime
 import re
 
-
 app = Flask(__name__,static_folder='static',template_folder='static')
 
 @app.route('/',methods=['POST','GET'])
 def index():
-	return render_template('chat_intro.html')
+	return render_template('chatintro.html')
 
 @app.route('/loginnow', methods=['POST','GET'])
 def loginnow():
@@ -153,6 +152,9 @@ def submitCodesign():
 		mycursor.close()
 		mydb.close()
 	return render_template('experience.html')
+
+if __name__ == '__main__':
+	app.run(debug=True, host='0.0.0.0')
 
 
 
