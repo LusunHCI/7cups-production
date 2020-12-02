@@ -318,6 +318,7 @@ function addNewIntents(msgid) {
 
 //====================================== append Actions to the interface ===========================
 function appendActions(botmessage, msg_type, msgid, ranking) {
+  var rasaUrl = document.location.protocol + "//" + document.location.hostname + "/rasa";
   if (msg_type == 0) {
     var divid = 'msg' + msgid;
     var tempdiv = "<div class='codesign' id='" + divid + "'> </div>";
