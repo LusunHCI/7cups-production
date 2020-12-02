@@ -425,7 +425,7 @@ $("#submitButton").on("click", function (e) {
     form_dict[tmp[0]] = tmp[1];
   }
   $.ajax({
-    url: "/submitCodesign",
+    url: "/submitCodesign/",
     type: "POST",
     contentType: 'application/json;charset=UTF-8',
     data: JSON.stringify(form_dict),
