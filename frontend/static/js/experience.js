@@ -251,7 +251,7 @@ function send(message) {
     }
   });
   $.ajax({
-    url: "/userMessage",
+    url: "/userMessage/",
     type: "POST",
     contentType: 'application/json;charset=UTF-8',
     data: JSON.stringify({ 'message_id': message_id, 'message': message, 'chatroom_id': para, 'message_type': 0, 'sender_id': para }),
@@ -505,7 +505,7 @@ function setBotResponse(response) {
         // }
         var message_id = para + message_count.toString();
         $.ajax({
-          url: "/botResponse",
+          url: "/botResponse/",
           type: "POST",
           contentType: 'application/json;charset=UTF-8',
           data: JSON.stringify({ 'message_id': message_id, 'message': botmessage, 'chatroom_id': para, 'message_type': msg_type, 'sender_id': 0 }),
