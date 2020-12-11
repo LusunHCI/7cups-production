@@ -42,14 +42,15 @@
         style="width:calc(100% - 400px); position: fixed; left: 400px; bottom: 50px; top:65px">
         <h4>Instructions</h4>
         <p class="experience_instruction">
-            Please try to communicate with the chatbot on the left. The chatbot will simulate a 7 cups member
-            struggling with their breakup that you, as a listener, can help and further develop your skills as a
-            listener. The chatbot is not perfect so if you encounter a misstep in your conversation with the
-            chatbot, just try to continue the conversation in a new direction. In the co-design activities that
-            follow your interaction with the chatbot, you will have an opportunity to correct these missteps. Try to
-            interact with the chatbot for 10 minutes. When you are done interacting with the chatbot, click “End the
-            conversation” to move on to the next section of co-design. In the next co-design stage, you will go
-            through these messages and answer several questions to help us improve this chatbot.
+            In the first part of the experiment, you will engage in a conversation with a chatbot named Andrew. A chatbot is a conversational agent that uses natural language processing and artificial intelligence to communicate with its users. You will serve as a listener to Andrew as he reveals how his recent breakup has been affecting him emotionally.  As you listen and interact with Andrew, your goal is to support him through empathy, affirmation, and active listening.
+            <br>
+            <br>
+            This conversation is intended to simulate a chat on the platform, 7 cups. 7 cups is an online mental health community in which people can register to be members, who have the opportunity to receive mental health support, or to be listeners, who can provide mental health support to the members. 
+            <br>
+            <br>
+            After your chat with Andrew, you will get the opportunity to analyze and improve the flow of your conversation by answering some simple questions in order to refine the design of the chatbot.
+            <br>
+            <br>
         </p>
     </div>
     <div class="startButton">
@@ -116,8 +117,10 @@
 <script src="static/layui/layui.all.js"></script>
 <script type="text/javascript" src="/static/js/materialize.min.js"></script>
 <script>
+    var flag=true;
 
     $(document).ready(function () {
+        layer.msg("welcome to the codesign session!");
         start_tip();
     });
     window.start_tip = function () {
@@ -130,7 +133,9 @@
             maxWidth: '50%',
             minWidth: '10%',
             end: function () {
+                if(flag) {
                 exp_tip();
+                }
             }
         });
     }
@@ -144,7 +149,9 @@
             maxWidth: '50%',
             minWidth: '10%',
             end: function () {
+                if(flag){
                 bot_tip();
+                }
             }
         });
     }
@@ -160,7 +167,9 @@
             minWidth: '10%',
             tips: '1',
             end: function () {
+                if(flag){
                 chat_tip();
+                }
             }
         });
     }
@@ -177,7 +186,9 @@
             tips: '2',
             end: function () {
                 $('#endConversation').removeClass('disabled');
+                if(flag){
                 end_tip();
+                }
             }
         });
     }
@@ -194,7 +205,10 @@
             tips: '1',
             end: function () {
                 $('.startButton').show();
+                if(flag) {
                 login_tip();
+                flag=false;
+                }
             }
         });
     }

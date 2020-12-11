@@ -36,7 +36,7 @@
 
 
     <div class="intentsDictionary">
-        <a class="waves-effect waves-light btn modal-trigger" href="#modal1"
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal1" id="dict-instruction"
             style="background-color:white; border-radius:30px; border: 2px solid #5a17ee; color: #5a17ee; position: fixed; right: 15px; top: 15px">Intents
             Dictionary
         </a>
@@ -250,13 +250,84 @@
             <div id="endConversation" class="btn waves-effect waves-light disabled"
                 style="background: #5a17ee; width: 80%; left: 35px; border-radius:30px;">End the Conversation</div>
         </div>
+
         <!--     <div class="profile_div" id="profile_div">
         <i class="large material-icons themeColor">android</i>
     </div> -->
     </div>
+    <div id="codesign-tips" style="display: none;">
+
+        <div class="instruction" id="co-instruction"
+        style="width:calc(100% - 400px); position: fixed; left: 400px; bottom: 50px; top:65px">
+        <h4>Instructions</h4>
+        <p class="experience_instruction">
+            Now that you have interacted with Andrew, the next part of this experiment involves analyzing the conversation you just had to help improve the current chatbot. 
+        </p>
+    </div>
+
+        <div class="widget">
+            <div class="chat_header">
+
+                <!--Add the name of the bot here -->
+                <span class="chat_header_title">Chat with Andrew</span>
+            </div>
+
+            <!--Chatbot contents goes here -->
+            <div class="chats_tip">
+                <div class="clearfix"></div>
+                <img class="userAvatar" src="../static/img/userAvatar.jpg">
+                <p class="userMsg" id="conversationMsg1">hi </p>
+                <div class="clearfix"></div>
+                <div id="chatbotTyping2" style="display: none;"><img class="botAvatar"
+                        src="../static/img/andrew_avatar.png">
+                    <div class="botTyping">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                </div><img class="botAvatar" src="../static/img/andrew_avatar.png" style="">
+                <p class="botMsg" id="conversationMsg2" style="">Hi, I'm seeking support for a breakup.</p>
+                <div class="clearfix" style=""></div><img class="userAvatar" src="../static/img/userAvatar.jpg">
+                <p class="userMsg" id="conversationMsg3">how are you doing? </p>
+                <div class="clearfix"></div>
+                <div id="chatbotTyping4" style="display: none;"><img class="botAvatar"
+                        src="../static/img/andrew_avatar.png">
+                    <div class="botTyping">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                </div><img class="botAvatar" src="../static/img/andrew_avatar.png" style="">
+                <p class="botMsg" id="conversationMsg4" style="">I've been struggling lately, dealing with my ex.</p>
+                <div class="clearfix" style=""></div>
+                <div id="chatbotTyping5" style="display: none;"><img class="botAvatar"
+                        src="../static/img/andrew_avatar.png">
+                    <div class="botTyping">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                </div><img class="botAvatar" src="../static/img/andrew_avatar.png" style="">
+                <p class="botMsg" id="conversationMsg5" style="">My girlfriend-- or I should say, now ex-- recently
+                    broke up with me.</p>
+                <div class="clearfix" style=""></div>
+            </div>
+
+            <!--keypad for user to type the message -->
+            <div class="keypad">
+                <textarea id="userInputdemo" placeholder="Type a message..." class="usrInput" spellcheck="false"
+                    disabled="disabled"></textarea>
+                <div id="sendButton" disabled="disabled"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>
+            </div>
+        </div>
+        <div class="feedback" id="feedback_tips" style="width:calc(100% - 400px); position: fixed; left: 400px; bottom: 50px; top:65px;">
+            <a class="modal-trigger" href="#modal2" style="position:fixed;right:15px"><i class="material-icons" style="color: #5a17ee; font-size: 35px; transform: rotate(180deg);">error_outline</i></a>
+            <div class="codesign" id="tip_msg1" style="display: none;"> <h6>Your message</h6> <div class="lmsg"> <p class="listenerMsg">hi</p> </div> <div class="selectIntents"> <p> The chatbot interpreted the intent of your message as "greeting" with the confidence as 1.00/1.00. </p></div><input type="text" class="hiddenInput" name="currentIntent1" id="currentIntent1" style="height:1px;display:none;"><div class="intentCard"><div class="card"><div class="card-content"><b>greeting</b>: The listener is saying hi to start the conversation <br> <i>Ex: Hi, welcome to 7cups</i></div> </div> </div><div class="isCorrect"><p> Did this capture your intention?</p></div><div class="choiceButton"> <input type="text" class="hiddenInput" name="yesno1" id="yesno1" style="height:1px;display:none;"> <br> <button class="yesintent btn" id="yesIntent1" onclick="yesintent(1)" type="button" style="background-color:white;border-radius:30px; border: 2px solid #5a17ee; color: #5a17ee"> Yes </button>  <button class="nointent btn" id="noIntent1" onclick="nointent(1)" type="button" style="background-color:white;border-radius:30px; border: 2px solid #5a17ee; color: #5a17ee"> No </button> </div><div class="yesDesc" id="yesDesc1"> <p style="float:left; width: 100%;">To confirm, press the Next button. </p> </div> <div class="noDesc" id="noDesc1"> <p style="float:left; width: 100%;"> Please select one intent from below. If none of the following captured your intention or you have an idea for a better intent, please click the "add new intent".</p> </div><div class="intentOption" id="intentOption1"> <div class="input-field col s12" style="float:left;width:100%;"> <div class="select-wrapper"><input class="select-dropdown dropdown-trigger" type="text" readonly="true" data-target="select-options-caa60e43-3c06-55e1-93a4-6d67e9ffa7a2"><ul id="select-options-caa60e43-3c06-55e1-93a4-6d67e9ffa7a2" class="dropdown-content select-dropdown" tabindex="0"><li id="select-options-caa60e43-3c06-55e1-93a4-6d67e9ffa7a20" tabindex="0" class="selected"><span>greeting: The listener is saying hi to start the conversation  Ex: Hi, welcome to 7cups  (confidence=1.00)</span></li><li id="select-options-caa60e43-3c06-55e1-93a4-6d67e9ffa7a21" tabindex="0"><span>NONE OF THIS APPLIES</span></li></ul><svg class="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg><select name="intentselect1" id="intentsselect1" tabindex="-1"><option value="greeting">greeting: The listener is saying hi to start the conversation  Ex: Hi, welcome to 7cups  (confidence=1.00)</option><option id="add_new1" value="Add_More">NONE OF THIS APPLIES</option></select></div> </div><div onclick="addNewIntents(1)"><i class="material-icons" style="vertical-align:middle">add</i> <a style="color:black">Add New Intent</a> </div></div><div class="otherIntent" id="otherIntent1"><div class="card"><div class="input-field col s6" style="width:50%;position:relative;left:10px;"> <input placeholder="Ex.greeting" name="newIntent1" id="newIntent1" type="text"><label for="newIntent1" class="active" style="left:0;">New Intent Name</label></div> <div class="input-field col s12"><textarea placeholder="Ex.The listener is saying hi to start the conversation." class="materialize-textarea" name="newExplaination1" id="newExplaination1" style="width:90%;position:relative;left:10px;"></textarea> <label for="newExplaination1" class="active">Please describe your new intent</label></div> </div> </div></div>
+    </div>
 
     <!--JavaScript at end of body for optimized loading-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../static/layui/layui.all.js"></script>
     <script type="text/javascript" src="../static/js/materialize.min.js"></script>
 
     <!--Main Script -->

@@ -33,6 +33,7 @@ $(document).ready(function () {
   para = arrUrl[1];
   message_count = 0;
   var ranking;
+  var flag = true;
 
   intentsDict = {
     "conventional_opening": "<b>conventional&nbspopening</b>: The listener is being courteous and seguing into discussion of the member's stressor.<br/> <i>Ex. How are you?, What's going on?</i>"
@@ -251,7 +252,7 @@ function send(message) {
     }
   });
   $.ajax({
-    url: "/userMessage/",
+    url: "/userMessage",
     type: "POST",
     contentType: 'application/json;charset=UTF-8',
     data: JSON.stringify({ 'message_id': message_id, 'message': message, 'chatroom_id': para, 'message_type': 0, 'sender_id': para }),
@@ -318,7 +319,6 @@ function addNewIntents(msgid) {
 
 //====================================== append Actions to the interface ===========================
 function appendActions(botmessage, msg_type, msgid, ranking) {
-  var rasaUrl = document.location.protocol + "//" + document.location.hostname + "/rasa";
   if (msg_type == 0) {
     var divid = 'msg' + msgid;
     var tempdiv = "<div class='codesign' id='" + divid + "'> </div>";
@@ -333,6 +333,7 @@ function appendActions(botmessage, msg_type, msgid, ranking) {
     $(yesGuide).appendTo(divid);
     var noGuide = "<div class='noGuide' id='noGuide" + msgid + "'><p style='float:left; width: 100%;'>Please select a more reasonable reply from below. </p> </div>";
     $(noGuide).appendTo(divid);
+    var rasaUrl = document.location.protocol + "//" + document.location.hostname + "/rasa";
     //var rasaUrl = "http://localhost:5005"
     $.ajax({
       url: rasaUrl + "/conversations/" + para + "/predict",
@@ -425,7 +426,7 @@ $("#submitButton").on("click", function (e) {
     form_dict[tmp[0]] = tmp[1];
   }
   $.ajax({
-    url: "/submitCodesign/",
+    url: "/submitCodesign",
     type: "POST",
     contentType: 'application/json;charset=UTF-8',
     data: JSON.stringify(form_dict),
@@ -505,7 +506,7 @@ function setBotResponse(response) {
         // }
         var message_id = para + message_count.toString();
         $.ajax({
-          url: "/botResponse/",
+          url: "/botResponse",
           type: "POST",
           contentType: 'application/json;charset=UTF-8',
           data: JSON.stringify({ 'message_id': message_id, 'message': botmessage, 'chatroom_id': para, 'message_type': msg_type, 'sender_id': 0 }),
@@ -551,21 +552,83 @@ $(document).on("click", ".menu .menuChips", function () {
 //====================================== End the conversation =========================================
 
 $("#endConversation").click(function () {
-  $('.experience_instruction').remove();
-  var codesign_instruction = "<p>  In this section of the codesign, we will replay your conversation with the chatbot, during this process, please help us correct the chatbot by answering the corresponding questions regarding Intents and Responses. <br/>"
-  codesign_instruction += " <br/><u><b>Intents</b></u> refer to the goal or intention of any message you send to the chatbot. When you send a message to the chatbot, it will try and detect the correct meaning, or intent, of the message with a certain <u><b>confidence</b></u> as indicated by the confidence score out of 1.00. The example below illustrates how the chatbot detects that a listener is trying to greet them. <br/>"
-  codesign_instruction += " <br/><table> <tbody> <tr> <td> Listener: “Hi!” </td> <td> Intent: greeting (confidence score = 0.98) </td> </tr></tbody> </table>"
-  codesign_instruction += " <br/><u><b>Responses</b></u> are given by the chatbot based on the intent. For example, if the intent is detected to be greeting, then a reasonable response from the chatbot would be “Hello”. <br/> "
-  codesign_instruction += " <br/><table> <tbody> <tr> <td> Listener: greeting </td> <td> Chatbot Response: \"Hello\" </td> </tr></tbody> </table>"
-  codesign_instruction += "  <br/>The chatbot isn’t perfect so if it fails to capture your Intent, it will likely provide an inadequate Response to your message. In this section, we will replay your conversations message by message and your task will be to improve the chatbot by choosing the most accurate Intents and reasonable Responses. Please press “Start” to begin.<br/>";
-  $(codesign_instruction).appendTo(".instruction");
-  $(".startButton").toggle();
-  $('#userInput').attr('disabled', true);
-  $('#endConversation').addClass('disabled');
-  $('#sendButton').attr('disabled', true);
-  $('.intentsDictionary').show();
+  var index = layer.open({
+    type: 2
+    , title: 'mid-survey'
+    , maxmin: true
+    , content: 'https://docs.google.com/forms/d/e/1FAIpQLSdu9vy1lTOvoH_rztuqixGcCR-EtOJKfyNf1HV6ulrZNsBEVw/viewform?embedded=true'
+    , area: ['100%', '100%']
+    , id: 'mid'
+    // ,cancel :function(index,layero){
+    //   var body = layer.getChildFrame('form', index);
+    //   var iframeWin = window[layero.find('iframe')[0]['name']]; 
+    //   //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+    //   if(body==null) {
+    //     layer.closeAll();
+    //   } else {
+    //     layer.msg('Please finish the survey',{anim:6});
+    //   return false;
+    //   }
+    // }
+    ,end:function() {
+      codesign_intro();
+    }
+  });
+  // $('.experience_instruction').remove();
+  // var codesign_instruction = "<p>  In this section of the codesign, we will replay your conversation with the chatbot, during this process, please help us correct the chatbot by answering the corresponding questions regarding Intents and Responses. <br/>"
+  // codesign_instruction += " <br/><u><b>Intents</b></u> refer to the goal or intention of any message you send to the chatbot. When you send a message to the chatbot, it will try and detect the correct meaning, or intent, of the message with a certain <u><b>confidence</b></u> as indicated by the confidence score out of 1.00. The example below illustrates how the chatbot detects that a listener is trying to greet them. <br/>"
+  // codesign_instruction += " <br/><table> <tbody> <tr> <td> Listener: “Hi!” </td> <td> Intent: greeting (confidence score = 0.98) </td> </tr></tbody> </table>"
+  // codesign_instruction += " <br/><u><b>Responses</b></u> are given by the chatbot based on the intent. For example, if the intent is detected to be greeting, then a reasonable response from the chatbot would be “Hello”. <br/> "
+  // codesign_instruction += " <br/><table> <tbody> <tr> <td> Listener: greeting </td> <td> Chatbot Response: \"Hello\" </td> </tr></tbody> </table>"
+  // codesign_instruction += "  <br/>The chatbot isn’t perfect so if it fails to capture your Intent, it will likely provide an inadequate Response to your message. In this section, we will replay your conversations message by message and your task will be to improve the chatbot by choosing the most accurate Intents and reasonable Responses. Please press “Start” to begin.<br/>";
+  // $(codesign_instruction).appendTo(".instruction");
+  // $(".startButton").toggle();
+  // $('#userInput').attr('disabled', true);
+  // $('#endConversation').addClass('disabled');
+  // $('#sendButton').attr('disabled', true);
 });
+//====================================== Codesign intro =============================================
+function codesign_intro() {
+  $('#container').hide();
+  $('#codesign-tips').show();
+  $('.intentsDictionary').show();
+  start_tip();
+}
+//=====================================layer tip functions ===============================================
+function start_tip() {
+  var start_tip = 'Read instructions first!'
+  layer.open({
+    type: 4,
+    content: [start_tip, '#co-instruction'],
+    area: 'auto',
+    shadeClose: true,
+    maxWidth: '50%',
+    minWidth: '10%',
+    end: function () {
+        intent_dict_tip();
+    }
+  });
+}
+function intent_dict_tip() {
+  var dict_tip = 'Click hear and check the instructions!'
+  layer.open({
+    type: 4,
+    content: [dict_tip, '#dict-instruction'],
+    area: 'auto',
+    shadeClose: true,
+    maxWidth: '50%',
+    minWidth: '10%',
+    tips:3,
+    end: function () {
+      open_dict();
+    }
+  });
+}
+function open_dict() {
+  layer.open({
 
+  });
+}
 //====================================== Start co-design activity =========================================
 
 $("#startCodesign").click(function () {
